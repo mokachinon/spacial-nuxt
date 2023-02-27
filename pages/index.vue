@@ -294,7 +294,7 @@ blockquote {
 }
 
 .post .item {
-  width: 15/%;
+  width: 15%;
 }
 
 .item {
