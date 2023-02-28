@@ -87,7 +87,7 @@
         <div class="text">
           <p><a>Create new post?</a>:</p>
           <blockquote>
-            <a class="input_area" href="postAdd.html">Add new post</a>
+            <nuxt-link class="input_area" to="/add">Add new post</nuxt-link>
           </blockquote>
         </div>
       </div>
@@ -148,7 +148,6 @@ export default {
 /* global style */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,900,700italic,900italic);
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-
 /* .svg-inline--fa {
   width: 1em;
   height: 1em;
