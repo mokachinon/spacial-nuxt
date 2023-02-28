@@ -127,6 +127,12 @@ blockquote {
     padding: 50px 100px;
 }
 
+.post a img{
+    width:100%;
+    height: 400px;
+    object-fit: cover;
+}
+
 /* end of global */
 
 /* profile start */
@@ -465,4 +471,5 @@ input[type="file"] {
 /* login style */
 
 
-/* end of login style */</style>
+/* end of login style */
+</style>

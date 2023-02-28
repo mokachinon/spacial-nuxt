@@ -104,6 +104,11 @@ blockquote {
 .text {
   padding: 50px 100px;
 }
+.post a img{
+    width:100%;
+    height: 400px;
+    object-fit: cover;
+}
 
 /* end of global */
 
