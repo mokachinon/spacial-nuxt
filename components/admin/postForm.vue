@@ -1,11 +1,12 @@
 <template>
   <div class="container">
     <div class="post panorama">
-      <label for="file-input">
+      <!-- <label for="file-input">
         <img src="https://37.media.tumblr.com/515851352b12925bb1c4311f070a58ba/tumblr_n4ydy4zvqF1slw5a4o1_500h.jpg"
           alt="Nice panorama! Awesome." />
       </label>
-      <input id="file-input" type="file" style="display: none;" />
+      <input id="file-input" type="file" style="display: none;" /> -->
+
 
       <div class="text">
         <div>
@@ -13,10 +14,13 @@
           <blockquote>
             <div>
               <p><span>
-                  <textarea class="input_area" placeholder="Add header"></textarea>
+                  <input class="input_area" placeholder="Add img" v-model="portfolio.img" />
                 </span></p>
               <p><span>
-                  <textarea class="input_area" placeholder="write a description"></textarea>
+                  <textarea class="input_area" placeholder="Add header"  v-model="portfolio.title"></textarea>
+                </span></p>
+              <p><span>
+                  <textarea class="input_area" placeholder="write a description"  v-model="portfolio.desc"></textarea>
                 </span></p>
             </div>
           </blockquote>
@@ -24,7 +28,7 @@
             <div class="row">
               <div class="button">
                 <div class="like_button">
-                  <button><font-awesome-icon icon="fa-solid fa-heart" /></button>
+                  <button @click="addPortfolio"><font-awesome-icon icon="fa-solid fa-heart" /></button>
                 </div>
               </div>
               <div class="button">
@@ -42,11 +46,78 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      portfolio: {
+        title: "",
+        desc: "",
+        img: ""
+      }
+    }
+  },
+  methods: {
+    addPortfolio() {
+      this.$store.dispatch("addPortfolio", this.portfolio)
+    }
+  }
 }
 </script>
 
 <style scoped>
+* {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  transition: all 0.5s;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  background-color: #f2f2f2;
+  padding-bottom: 100px;
+}
+
+h1,
+a {
+  color: #333;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+p {
+  color: #808080;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+ul,
+li {
+  color: #808080;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+p a {
+  text-decoration: underline;
+}
+
+blockquote {
+  border-left: 3px solid #e0e0e0;
+  width: 100%;
+  padding-left: 10px;
+  margin: 0px;
+}
+
+.text {
+  padding: 50px 100px;
+}
+
 /* homepage */
 .container {
   width: 100%;
@@ -54,9 +125,11 @@ export default {
   margin: 0 auto;
   position: relative;
 }
+
 .row {
   display: table-row;
 }
+
 .post {
   width: 100%;
   background-color: #fff;
@@ -67,6 +140,7 @@ export default {
   z-index: 20;
   position: relative;
 }
+
 .post:hover {
   border-left: 1px solid #4A89DC;
 }
@@ -123,7 +197,7 @@ export default {
 }
 
 @media screen and (max-width:990px) {
-  
+
   .container {
     padding: 20px;
     padding-top: 0px;

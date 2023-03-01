@@ -40,6 +40,60 @@ export default {
 
 <style scoped>
 
+* {
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+    transition: all 0.5s;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    background-color: #f2f2f2;
+    padding-bottom: 100px;
+}
+
+h1,
+a {
+    color: #333;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+p {
+    color: #808080;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+ul,
+li {
+    color: #808080;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+p a {
+    text-decoration: underline;
+}
+
+blockquote {
+    border-left: 3px solid #e0e0e0;
+    width: 100%;
+    padding-left: 10px;
+    margin: 0px;
+}
+
+.text {
+    padding: 50px 100px;
+}
+
 .container {
     width: 100%;
     max-width: 700px;

@@ -4,14 +4,20 @@
         <div class="container">
             <uiProfileSmall />
             <uiComponentAdd />
-            <HomepagePostItem v-for="item in 5" :key="item"/>
+            <HomepagePostItem v-for="item in postList" :key="item" :detail="item"/>
         </div>
     </div>
 </template>
   
 <script>
+
 export default {
-    name: 'IndexPage'
+    name: 'IndexPage',
+    computed: {
+        postList() {
+            return this.$store.state.portfolioList
+        }
+    }
 }
 </script>
   

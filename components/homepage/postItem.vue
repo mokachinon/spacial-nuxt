@@ -1,7 +1,7 @@
 <template>
     <div class="post">
         <a>
-            <img src="https://cdnb.artstation.com/p/assets/images/images/014/669/131/large/mai-yoneyama-72125578-p0-master1200.jpg?1544952684"
+            <img :src="detail.img"
                 alt="munditheme: Nice panorama! Awesome." />
         </a>
         <div class="item edit">
@@ -14,26 +14,11 @@
             <div>
                 <p><a class="tumblr_blog">robby</a>:</p>
                 <blockquote>
-                    <h1><a>Lorem ipsum</a></h1>
+                    <h1><a>{{ detail.title }}</a></h1>
                     <div>
                         <div class="post-desc" :class="{ visible: isVisible }">
                             <p>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu augue in ipsum
-                                    congue
-                                    auctor.
-                                    Cras bibendum nulla et odio sollicitudin, sit amet placerat metus dapibus. Sed orci
-                                    quam,
-                                    consectetur eget sodales at, vehicula sit amet nulla. Maecenas sem nisl, hendrerit
-                                    ut nisi
-                                    vitae, ultricies gravida nibh. Suspendisse bibendum libero ligula, non porttitor
-                                    augue
-                                    cursus
-                                    ut. In ligula nulla, mattis sit amet purus vitae, blandit eleifend dui. Vestibulum
-                                    ullamcorper,
-                                    dolor sed cursus facilisis, orci eros bibendum neque, eget porttitor est ligula non
-                                    ipsum.
-                                    Mauris id elit nec tortor gravida sagittis. Aliquam rhoncus ut lorem at
-                                    porta.</span>
+                                <span>{{ detail.desc}}</span>
                             </p>
                         </div>
                         <span @click="toggleMore" style="color:#cccc">{{ isVisible ? "Show Less" : "Show More..." }}</span>
@@ -60,11 +45,18 @@ export default {
             isVisible: false
         }
     },
+    props: {
+        detail: {
+            type: Object,
+            default: ""
+        },
+    },
     methods: {
         toggleMore() {
             this.isVisible = !this.isVisible
         },
-    }
+    },
+
 }
 </script>
 
