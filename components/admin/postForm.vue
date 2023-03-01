@@ -24,12 +24,12 @@
             <div class="row">
               <div class="button">
                 <div class="like_button">
-                  <a><font-awesome-icon icon="fa-solid fa-heart" /></a>
+                  <button><font-awesome-icon icon="fa-solid fa-heart" /></button>
                 </div>
               </div>
               <div class="button">
                 <div class="reblog_button">
-                  <nuxt-link to="/"><font-awesome-icon icon="fa-solid fa-repeat" /></nuxt-link>
+                  <nuxt-link tag="button" to="/"><font-awesome-icon icon="fa-solid fa-repeat" /></nuxt-link>
                 </div>
               </div>
             </div>
@@ -47,71 +47,6 @@ export default {
 </script>
 
 <style scoped>
-/* global style */
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,900,700italic,900italic);
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-
-* {
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  transition: all 0.5s;
-  font-family: Roboto, Arial, Helvetica, sans-serif;
-}
-
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0px;
-  background-color: #f2f2f2;
-  padding-bottom: 100px;
-}
-
-h1,
-a {
-  color: #333;
-  font-weight: 300;
-  text-decoration: none;
-}
-
-p {
-  color: #808080;
-  font-size: 14px;
-  font-weight: 300;
-}
-
-ul,
-li {
-  color: #808080;
-  font-weight: 300;
-  font-size: 14px;
-}
-
-p a {
-  text-decoration: underline;
-}
-
-blockquote {
-  border-left: 3px solid #e0e0e0;
-  width: 100%;
-  padding-left: 10px;
-  margin: 0px;
-}
-
-.text {
-  padding: 50px 100px;
-}
-.post a img{
-    width:100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-/* end of global */
-
 /* homepage */
 .container {
   width: 100%;

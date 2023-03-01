@@ -3,7 +3,7 @@
         <div class="text">
             <p><a>Create new post?</a>:</p>
             <blockquote>
-                <nuxt-link class="input_area" to="/add">Add new post</nuxt-link>
+                <nuxt-link tag="a" class="input_area" to="/add">Add new post</nuxt-link>
             </blockquote>
         </div>
     </div>

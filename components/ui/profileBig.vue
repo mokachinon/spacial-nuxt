@@ -49,4 +49,157 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.text {
+    padding: 50px 100px;
+}
+
+/* end of global */
+
+/* profile start */
+.profile-container {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.profile-big {
+    width: 300px;
+    position: absolute;
+    left: -320px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+
+.header {
+    width: 100%;
+    height: 200px;
+}
+
+.profile-image {
+    position: absolute;
+    top: 150px;
+    left: 100px;
+}
+
+.profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 5px solid #fff;
+    display: block;
+}
+
+.profile-big .text {
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.profile-big .text h3 {
+    text-align: center;
+    color: #333;
+    font-weight: 400;
+}
+
+
+.table {
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+.row {
+    display: table-row;
+}
+
+.item {
+    display: table-cell;
+    padding: 10px;
+    width: 33%;
+    border-bottom: 5px solid #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+.item:hover {
+    border-bottom: 5px solid #4A89DC;
+}
+
+.item:hover .comment {
+    display: block;
+}
+
+
+.comment {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    color: #808080;
+    font-size: 14px;
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    margin-left: -50px;
+    border: 1px solid #e0e0e0;
+    display: none;
+    z-index: 10;
+}
+
+.comment:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    margin-left: -5px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #e0e0e0;
+}
+
+/* profile end */
+
+@media screen and (max-width:990px) {
+    .profile-big {
+        display: none;
+    }
+
+    .container {
+        padding: 20px;
+        padding-top: 0px;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .text {
+        padding: 50px;
+    }
+
+}
+
+@media screen and (max-width:500px) {
+    .text {
+        padding: 20px;
+        padding-top: 50px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}
+</style>
