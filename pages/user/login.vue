@@ -1,27 +1,27 @@
 <template>
-    <div class="container">
+    <form class="container" @submit.prevent="onSubmit">
         <div class="post panorama">
             <a>
-                <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119917057167421/WhatsApp_Image_2023-02-27_at_18.52.53_1.jpeg"
-                    alt="munditheme: Nice panorama! Awesome." />
+                <!-- <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119917057167421/WhatsApp_Image_2023-02-27_at_18.52.53_1.jpeg"
+                    alt="munditheme: Nice panorama! Awesome." /> -->
             </a>
             <div class="text">
                 <div>
                     <p><a class="tumblr_blog">hey please login first</a>:</p>
                     <blockquote>
-                        <input class="input_area" type="email" placeholder="Email" />
+                        <input class="input_area" type="email" placeholder="Email" v-model="email"/>
                         <div>
-                        <p><span>
-                                <input class="input_area" placeholder="password..." type="password" />
-                            </span></p>
+                            <p><span>
+                                    <input class="input_area" placeholder="password..." type="password" v-model="password"/>
+                                </span></p>
                         </div>
                     </blockquote>
                     <div class="social-buttons">
                         <div class="row">
                             <div class="button">
-                                <div class="like_button">
-                                    <nuxt-link tag="a" to="/"><font-awesome-icon icon="fa-solid fa-heart" /></nuxt-link>
-                                </div>
+                                <button class="like_button" type="submit">
+                                    <font-awesome-icon icon="fa-solid fa-heart" />
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -29,17 +29,33 @@
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            email: "",
+            password: "",
+        }
+    },
+    methods: {
+        async onSubmit() {
+            await this.$store.dispatch("authenticateUser", {
+                isLogin: true,
+                email: this.email,
+                password: this.password,
+            })
+            // .then(() => this.$router.push("/"))
+            this.$router.push("/");
+        }
+    }
 
 }
 </script>
 
 <style scoped>
-
 * {
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
@@ -161,7 +177,7 @@ blockquote {
 }
 
 @media screen and (max-width:990px) {
-   
+
     .container {
         padding: 20px;
         padding-top: 0px;
@@ -180,6 +196,7 @@ blockquote {
         padding: 20px;
         padding-top: 50px;
     }
+
     .container {
         padding: 10px;
     }

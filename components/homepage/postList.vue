@@ -1,10 +1,17 @@
 <template>
     <div>
-        <uiProfileBig />
+        <!-- <uiProfileBig v-if="$store.getters.isAuthenticated"/> -->
         <div class="container">
-            <uiProfileSmall />
-            <uiComponentAdd />
-            <HomepagePostItem v-for="item in postList" :key="item" :detail="item"/>
+            <!-- <uiProfileSmall v-if="$store.getters.isAuthenticated"/>
+            <div class="post" v-else>
+                <div class="text">
+                    <blockquote>
+                        <nuxt-link tag="a" class="input_area" to="/user/login">Login?</nuxt-link>
+                    </blockquote>
+                </div>
+            </div>
+            <uiComponentAdd /> -->
+            <HomepagePostItem v-for="item in postList" :key="item" :detail="item" />
         </div>
     </div>
 </template>
@@ -22,6 +29,7 @@ export default {
 </script>
   
 <style scoped>
+
 
 .container {
     width: 100%;
@@ -42,5 +50,4 @@ export default {
         padding: 10px;
     }
 }
-
 </style>

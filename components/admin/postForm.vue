@@ -1,20 +1,18 @@
 <template>
   <div class="container">
     <div class="post panorama">
-      <!-- <label for="file-input">
-        <img src="https://37.media.tumblr.com/515851352b12925bb1c4311f070a58ba/tumblr_n4ydy4zvqF1slw5a4o1_500h.jpg"
+      <label for="file-input" v-if="portfolio.image">
+        <img :src="portfolio.image"
           alt="Nice panorama! Awesome." />
       </label>
-      <input id="file-input" type="file" style="display: none;" /> -->
-
-
+      <input id="file-input" type="file" style="display: none;" />
       <div class="text">
         <div>
           <p><a class="tumblr_blog">robby</a>:</p>
           <blockquote>
             <div>
               <p><span>
-                  <input class="input_area" placeholder="Add img" v-model="portfolio.img" />
+                  <input class="input_area" placeholder="Add img" v-model="portfolio.image"/>
                 </span></p>
               <p><span>
                   <textarea class="input_area" placeholder="Add header"  v-model="portfolio.title"></textarea>
@@ -51,68 +49,20 @@ export default {
       portfolio: {
         title: "",
         desc: "",
-        img: ""
+        image: "",
       }
     }
   },
   methods: {
-    addPortfolio() {
-      this.$store.dispatch("addPortfolio", this.portfolio)
+    async addPortfolio() {
+      await this.$store.dispatch("addPortfolio", this.portfolio)
+      this.$router.push("/");
     }
   }
 }
 </script>
 
 <style scoped>
-* {
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  transition: all 0.5s;
-  font-family: Roboto, Arial, Helvetica, sans-serif;
-}
-
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0px;
-  background-color: #f2f2f2;
-  padding-bottom: 100px;
-}
-
-h1,
-a {
-  color: #333;
-  font-weight: 300;
-  text-decoration: none;
-}
-
-p {
-  color: #808080;
-  font-size: 14px;
-  font-weight: 300;
-}
-
-ul,
-li {
-  color: #808080;
-  font-weight: 300;
-  font-size: 14px;
-}
-
-p a {
-  text-decoration: underline;
-}
-
-blockquote {
-  border-left: 3px solid #e0e0e0;
-  width: 100%;
-  padding-left: 10px;
-  margin: 0px;
-}
 
 .text {
   padding: 50px 100px;

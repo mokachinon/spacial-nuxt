@@ -8,7 +8,7 @@
                     src="https://assets.tumblr.com/images/default_avatar/sphere_open_128.png" /></a>
         </div>
         <div class="text">
-            <h3>robby</h3>
+            <h3>{{ $store.state.userData.username }}</h3>
             <p>UI/UX Designers</p>
             <p>A designer, developer, and
                 photographer.</p>
@@ -52,7 +52,6 @@ export default {
     padding: 50px 100px;
 }
 .profile-small {
-    display: none;
     background-color: #fff;
     position: relative;
 }
@@ -152,14 +151,6 @@ export default {
 }
 
 /* profile end */
-
-@media screen and (max-width:990px) {
- 
-    .profile-small {
-        display: block;
-    }
-
-}
 
 @media screen and (max-width:700px) {
     .text {

@@ -1,27 +1,29 @@
 <template>
-    <div class="container">
+    <form class="container" @submit.prevent="onSubmit">
         <div class="post panorama">
             <a>
-                <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119916537061478/shadi-XIOsgtpGMaM-unsplash_1.jpg"
-                    alt="Nice panorama! Awesome." />
+                <!-- <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119916537061478/shadi-XIOsgtpGMaM-unsplash_1.jpg"
+                    alt="Nice panorama! Awesome." /> -->
             </a>
             <div class="text">
                 <div>
                     <p><a class="tumblr_blog">...</a></p>
                     <blockquote>
-                        <input class="input_area" type="email" placeholder="Email" />
+                        <input class="input_area" type="text" placeholder="Username" v-model="username"/>
+                        <input class="input_area" type="email" placeholder="Email" v-model="email" />
                         <div>
-                        <p><span>
-                                <input class="input_area" placeholder="password..." type="password" />
-                            </span></p>
+                            <p><span>
+                                    <input class="input_area" placeholder="password..." type="password"
+                                        v-model="password" />
+                                </span></p>
                         </div>
                     </blockquote>
                     <div class="social-buttons">
                         <div class="row">
                             <div class="button">
-                                <div class="like_button">
-                                    <nuxt-link tag="a" to="/"><font-awesome-icon icon="fa-solid fa-heart" /></nuxt-link>
-                                </div>
+                                <button class="like_button" type="submit">
+                                    <font-awesome-icon icon="fa-solid fa-heart" />
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -29,17 +31,34 @@
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            email: "",
+            password: "",
+            username: "",
+        }
+    },
+    methods: {
+        onSubmit() {
+            this.$store.dispatch("authenticateUser", {
+                isLogin: false,
+                email: this.email,
+                password: this.password,
+                displayName: this.username,
+            })
+                .then(() => this.$router.push("/"))
+        }
+    }
 
 }
 </script>
 
 <style scoped>
-
 * {
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
@@ -178,5 +197,6 @@ blockquote {
         padding: 10px;
     }
 }
+
 /* end of index */
 </style>

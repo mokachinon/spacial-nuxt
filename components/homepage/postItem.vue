@@ -1,7 +1,7 @@
 <template>
     <div class="post">
         <a>
-            <img :src="detail.img"
+            <img :src="detail.image"
                 alt="munditheme: Nice panorama! Awesome." />
         </a>
         <div class="item edit">
