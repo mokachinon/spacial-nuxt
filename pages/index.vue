@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <uiProfileSmall v-if="$store.getters.isAuthenticated" />
+    <uiProfileSmall/>
+    <!-- <uiProfileSmall v-if="$store.getters.isAuthenticated" />
     <div class="post" v-else>
       <div class="text">
         <blockquote>
@@ -14,8 +15,8 @@
           <button class="input_area" @click="logout">Logout</button>
         </blockquote>
       </div>
-    </div>
-    <uiComponentAdd />
+    </div> -->
+    <uiComponentAdd v-if="$store.getters.isAuthenticated" />
     <HomepagePostList />
   </div>
 </template>
@@ -24,12 +25,6 @@
 export default {
   async created() {
     await this.$store.dispatch("getPortfolioList");
-  },
-  methods: {
-    async logout() {
-      await this.$store.commit("setToken", null)
-      this.$router.push("/")
-    }
   }
 }
 </script>
@@ -45,21 +40,6 @@ export default {
 
 .text {
   padding: 50px 100px;
-}
-
-.post {
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  margin-top: 50px;
-  border-radius: 5px;
-  overflow: hidden;
-  z-index: 20;
-  position: relative;
-}
-
-.post:hover {
-  border-left: 1px solid #4A89DC;
 }
 
 * {
@@ -120,7 +100,7 @@ blockquote {
   width: 100%;
   background-color: #fff;
   border: 1px solid #e0e0e0;
-  margin-top: 50px;
+  margin-top: 20px;
   border-radius: 5px;
   overflow: hidden;
   z-index: 20;
@@ -128,7 +108,7 @@ blockquote {
 }
 
 .post:hover {
-  border-left: 1px solid #4A89DC;
+  border-left: 1px solid #333;
 }
 
 .input_area {

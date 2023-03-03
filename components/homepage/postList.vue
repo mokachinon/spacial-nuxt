@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <uiProfileBig v-if="$store.getters.isAuthenticated"/> -->
-        <div class="container">
+        <div class="container" >
             <!-- <uiProfileSmall v-if="$store.getters.isAuthenticated"/>
             <div class="post" v-else>
                 <div class="text">
@@ -11,7 +11,7 @@
                 </div>
             </div>
             <uiComponentAdd /> -->
-            <HomepagePostItem v-for="item in postList" :key="item" :detail="item" />
+            <HomepagePostItem v-for="item in postList.slice().reverse()" :key="item" :detail="item" />
         </div>
     </div>
 </template>
@@ -29,8 +29,6 @@ export default {
 </script>
   
 <style scoped>
-
-
 .container {
     width: 100%;
     max-width: 700px;

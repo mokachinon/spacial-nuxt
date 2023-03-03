@@ -2,14 +2,14 @@
     <form class="container" @submit.prevent="onSubmit">
         <div class="post panorama">
             <a>
-                <!-- <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119916537061478/shadi-XIOsgtpGMaM-unsplash_1.jpg"
-                    alt="Nice panorama! Awesome." /> -->
+                <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119916537061478/shadi-XIOsgtpGMaM-unsplash_1.jpg"
+                    alt="Nice panorama! Awesome." />
             </a>
             <div class="text">
                 <div>
-                    <p><a class="tumblr_blog">...</a></p>
+                    <p><a class="tumblr_blog">Who are you?</a></p>
                     <blockquote>
-                        <input class="input_area" type="text" placeholder="Username" v-model="username"/>
+                        <input class="input_area" type="text" placeholder="Username" v-model="username" />
                         <input class="input_area" type="email" placeholder="Email" v-model="email" />
                         <div>
                             <p><span>
@@ -21,13 +21,13 @@
                     <div class="social-buttons">
                         <div class="row">
                             <div class="button">
-                                <button class="like_button" type="submit">
-                                    <font-awesome-icon icon="fa-solid fa-heart" />
+                                <button class="reblog_button" type="submit">
+                                    <font-awesome-icon icon="fa-solid fa-repeat" />
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <p>so you have an account <nuxt-link tag="a" class="tumblr_blog" to="/user/login">login?</nuxt-link></p>
+                    <p>Or you have an account <nuxt-link tag="a" class="tumblr_blog" to="/user/login">login?</nuxt-link></p>
                 </div>
             </div>
         </div>
@@ -121,6 +121,15 @@ blockquote {
 }
 
 
+.post a img {
+    width: 100%;
+    height: 100%;
+    max-width: 700px;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .row {
     display: table-row;
 }
@@ -129,15 +138,16 @@ blockquote {
     width: 100%;
     background-color: #fff;
     border: 1px solid #e0e0e0;
-    margin-top: 50px;
     border-radius: 5px;
     overflow: hidden;
+    margin-top: 20px;
+
     z-index: 20;
     position: relative;
 }
 
 .post:hover {
-    border-left: 1px solid #4A89DC;
+    border-left: 1px solid #333;
 }
 
 .input_area {
@@ -160,17 +170,21 @@ blockquote {
     vertical-align: middle;
 }
 
-.like_button a {
-    color: #CCCCCC;
+.reblog_button {
+    color: #cccccc;
+    background: none;
+    border: none;
+    text-decoration: none;
 }
 
-.like_button a:hover {
-    color: #DA373C;
-    transition: .1s;
-    -webkit-transition: .2s;
-    -moz-transition: .2s;
-    -ms-transition: .2s;
-    -o-transition: .2s;
+.reblog_button:hover {
+    color: #4a89dc;
+    transition: 0.1s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    cursor: pointer;
 }
 
 @media screen and (max-width:990px) {

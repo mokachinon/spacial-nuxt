@@ -133,7 +133,7 @@ export default {
 }
 
 .item:hover {
-    border-bottom: 5px solid #4A89DC;
+    border-bottom: 5px solid #333;
 }
 
 .item:hover .comment {

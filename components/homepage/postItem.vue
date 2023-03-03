@@ -1,38 +1,45 @@
 <template>
-    <div class="post">
-        <a>
-            <img :src="detail.image"
-                alt="munditheme: Nice panorama! Awesome." />
-        </a>
-        <div class="item edit">
-            <a>
-                <font-awesome-icon icon="fa-solid fa-ellipsis" />
+    <div>
+        <div class="post">
+            <a @click="showImagePopup">
+                <img :src="detail.image" alt="Nice panorama! Awesome." />
             </a>
-            <div class="comment bottom">Edit</div>
-        </div>
-        <div class="text">
-            <div>
-                <p><a class="tumblr_blog">robby</a>:</p>
-                <blockquote>
-                    <h1><a>{{ detail.title }}</a></h1>
-                    <div>
-                        <div class="post-desc" :class="{ visible: isVisible }">
-                            <p>
-                                <span>{{ detail.desc}}</span>
-                            </p>
+            <div class="item edit">
+                <a>
+                    <font-awesome-icon icon="fa-solid fa-ellipsis" />
+                </a>
+                <div class="comment bottom">Edit</div>
+            </div>
+            <div class="text">
+                <div>
+                    <p><a class="tumblr_blog">Robby</a>:</p>
+                    <blockquote>
+                        <h1><a>{{ detail.title }}</a></h1>
+                        <div>
+                            <div class="post-desc" :class="{ visible: isVisible }">
+                                <p style="margin:0;"><span>{{ detail.desc }}</span></p>
+                            </div>
+                            <span v-if="showMore" @click="toggleMore" class="show-more">{{
+                                isVisible ? "Show Less" : "Show More..."
+                            }}</span>
                         </div>
-                        <span @click="toggleMore" style="color:#cccc">{{ isVisible ? "Show Less" : "Show More..." }}</span>
-                    </div>
-                </blockquote>
-                <div class="social-buttons">
-                    <div class="row">
-                        <div class="button">
-                            <div class="like_button">
-                                <a><font-awesome-icon icon="fa-solid fa-heart" /></a>
+                    </blockquote>
+                    <div class="social-buttons">
+                        <div class="row">
+                            <div class="button">
+                                <div class="like_button">
+                                    <button><font-awesome-icon icon="fa-solid fa-heart" /></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="image-popup" :class="{ active: isImagePopupActive }">
+            <div class="image-popup-overlay" @click="showImagePopup"></div>
+            <div class="image-popup-content">
+                <img :src="detail.image" alt="Nice panorama! Awesome." />
             </div>
         </div>
     </div>
@@ -42,28 +49,111 @@
 export default {
     data() {
         return {
-            isVisible: false
-        }
+            isVisible: false,
+            isImagePopupActive: false,
+            wordLimit: 50,
+        };
     },
     props: {
         detail: {
             type: Object,
-            default: ""
+            default: "",
         },
+    },
+    computed: {
+        descWords() {
+            return this.detail.desc.split(" ").length; // count number of words in desc
+        },
+        showMore() {
+            return this.descWords > this.wordLimit; // check if desc exceeds word limit
+        }
     },
     methods: {
         toggleMore() {
-            this.isVisible = !this.isVisible
+            this.isVisible = !this.isVisible;
+        },
+        showImagePopup() {
+            this.isImagePopupActive = !this.isImagePopupActive
         },
     },
-
-}
+};
 </script>
 
 <style scoped>
+.image-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+}
+
+.image-popup.active {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.image-popup-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-popup-content {
+    max-width: 80%;
+    max-height: 80%;
+    position: absolute;
+
+}
+
+.image-popup-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
 .post-desc {
-    height: 100px;
+    max-height: 80px;
     overflow: hidden;
+}
+
+.post-desc.visible {
+    max-height: none;
+}
+
+.show-more {
+    color: #cccc;
+    cursor: pointer;
+    display: block;
+}
+
+.show-more:hover {
+    text-decoration: underline;
+}
+
+
+.post a img {
+    width: 100%;
+    height: 100%;
+    max-width: 700px;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
 }
 
 .visible {
@@ -78,7 +168,6 @@ export default {
     display: table-row;
 }
 
-
 .edit {
     display: flex;
     float: right;
@@ -87,21 +176,21 @@ export default {
 }
 
 .edit a {
-    color: #CCCCCC;
+    color: #cccccc;
 }
-
 
 .item {
     display: table-cell;
     padding: 10px;
-    width: 33%;
+    width: 15%;
     border-bottom: 5px solid #fff;
     cursor: pointer;
     position: relative;
+    text-align: center;
 }
 
 .item:hover {
-    border-bottom: 5px solid #4A89DC;
+    border-bottom: 5px solid #333;
 }
 
 .item:hover .comment {
@@ -143,15 +232,15 @@ export default {
     width: 100%;
     background-color: #fff;
     border: 1px solid #e0e0e0;
-    margin-top: 50px;
     border-radius: 5px;
+    margin-top: 20px;
     overflow: hidden;
     z-index: 20;
     position: relative;
 }
 
 .post:hover {
-    border-left: 1px solid #4A89DC;
+    border-left: 1px solid #333;
 }
 
 .social-buttons {
@@ -164,32 +253,34 @@ export default {
     vertical-align: middle;
 }
 
-.like_button a {
-    color: #CCCCCC;
-}
-
-.like_button a:hover {
-    color: #DA373C;
-    transition: .2s;
-    -webkit-transition: .2s;
-    -moz-transition: .2s;
-    -ms-transition: .2s;
-    -o-transition: .2s;
+.like_button button {
+    color: #cccccc;
+    background: none;
+    border: none;
 }
 
 
-@media screen and (max-width:700px) {
+.like_button button:hover {
+    color: #da373c;
+    transition: 0.1s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 700px) {
     .text {
         padding: 50px;
     }
-
 }
 
-@media screen and (max-width:500px) {
+@media screen and (max-width: 500px) {
     .text {
         padding: 20px;
         padding-top: 50px;
     }
-
 }
 </style>
