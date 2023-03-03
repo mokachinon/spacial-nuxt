@@ -62,10 +62,10 @@ export default {
     },
     computed: {
         descWords() {
-            return this.detail.desc.split(" ").length; // count number of words in desc
+            return this.detail.desc.split(" ").length;
         },
         showMore() {
-            return this.descWords > this.wordLimit; // check if desc exceeds word limit
+            return this.descWords > this.wordLimit;
         }
     },
     methods: {
