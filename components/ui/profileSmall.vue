@@ -4,6 +4,24 @@
             <div class="header"
                 style="background:url(https://31.media.tumblr.com/d83b99e22981d5e58e2bd74ed2494087/tumblr_n4ef3ynCZP1st5lhmo1_1280.jpg) no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
             </div>
+                <!-- </div>
+            <div v-if="$store.getters.isAuthenticated">
+                <div class="profile-image" >
+                    <a href="https://munditheme.tumblr.com/"><img
+                            src="https://assets.tumblr.com/images/default_avatar/sphere_open_128.png" /></a>
+                </div>
+                <div class="logout-btn edit">
+                    <a>
+                        <font-awesome-icon icon="fa-solid fa-ellipsis" />
+                    </a>
+                    <div class="comment bottom" @click="logout">Logout?</div>
+                </div>
+                <div class="text">
+                    <h3>{{ $store.state.userData.username }}</h3>
+                    <p>UI/UX Designers</p>
+                    <p>A designer, developer, and
+                        photographer.</p>
+                </div> -->
             <div class="profile-image" v-if="$store.getters.isAuthenticated">
                 <a href="https://munditheme.tumblr.com/"><img
                         src="https://assets.tumblr.com/images/default_avatar/sphere_open_128.png" /></a>
