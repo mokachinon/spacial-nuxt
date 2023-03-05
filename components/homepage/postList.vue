@@ -1,16 +1,6 @@
 <template>
     <div>
-        <!-- <uiProfileBig v-if="$store.getters.isAuthenticated"/> -->
         <div class="container" >
-            <!-- <uiProfileSmall v-if="$store.getters.isAuthenticated"/>
-            <div class="post" v-else>
-                <div class="text">
-                    <blockquote>
-                        <nuxt-link tag="a" class="input_area" to="/user/login">Login?</nuxt-link>
-                    </blockquote>
-                </div>
-            </div>
-            <uiComponentAdd /> -->
             <HomepagePostItem v-for="item in postList.slice().reverse()" :key="item" :detail="item" />
         </div>
     </div>

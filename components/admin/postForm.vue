@@ -22,7 +22,8 @@
               </p>
               <p>
                 <span>
-                  <textarea class="input_desc" placeholder="write a description" v-model="portfolio.desc"></textarea>
+                  <textarea class="input_desc" placeholder="write a description" v-model="portfolio.desc"
+                    @input="autoTextArea"></textarea>
                 </span>
               </p>
             </div>
@@ -47,7 +48,7 @@
       </div>
     </div>
     <div class="image-popup" :class="{ active: isImagePopupActive }">
-      <div class="image-popup-overlay" @click="hideImagePopup"></div>
+      <div class="image-popup-overlay" @click="showImagePopup"></div>
       <div class="image-popup-content" v-if="portfolio.image">
         <img :src="portfolio.image" alt="Nice panorama! Awesome." />
       </div>
@@ -74,12 +75,14 @@ export default {
       this.$router.push("/");
     },
     showImagePopup() {
-      this.isImagePopupActive = true;
+      this.isImagePopupActive = !this.isImagePopupActive
     },
-    hideImagePopup() {
-      this.isImagePopupActive = false;
+    autoTextArea(event) {
+      const textarea = event.target;
+      textarea.style.height = "auto";
+      const height = Math.min(textarea.scrollHeight, 200);
+      textarea.style.height = height + "px";
     },
-
   },
 };
 </script>
@@ -129,6 +132,8 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
+
 }
 
 .text {
@@ -197,7 +202,7 @@ export default {
 
 .input_desc {
   width: 100%;
-  height: 100px;
+  height: auto;
   resize: none;
   border: none;
   color: #808080;
@@ -205,6 +210,9 @@ export default {
   font-weight: 300;
 }
 
+.input_desc::-webkit-scrollbar {
+  display: none;
+}
 
 .social-buttons {
   display: table;

@@ -12,7 +12,7 @@
             </div>
             <div class="text">
                 <div>
-                    <p><a class="tumblr_blog">Robby</a>:</p>
+                    <p><a class="tumblr_blog">{{ detail.userName }}</a>:</p>
                     <blockquote>
                         <h1><a>{{ detail.title }}</a></h1>
                         <div>
@@ -28,7 +28,8 @@
                         <div class="row">
                             <div class="button">
                                 <div class="like_button">
-                                    <button><font-awesome-icon icon="fa-solid fa-heart" /></button>
+                                    <button @click="likeClick"><font-awesome-icon icon="fa-solid fa-heart" /></button>
+                                    <p>{{ likeCount }} people like this</p>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +67,32 @@ export default {
         },
         showMore() {
             return this.descWords > this.wordLimit;
-        }
+        },
+        likeCount() {
+            if (this.detail.dataLikes.length === 1) {
+                if (this.detail.dataLikes[0] === "null") {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            } else {
+                return this.detail.dataLikes.length
+            }
+        },
+        likeImage() {
+            const checkLike = this.detail.dataLikes.find((user) => {
+                return user === this.userEmail
+            });
+
+            if (checkLike.length === 0) {
+                return "images/heart-black.png"
+            }
+            return "images/heart-red.png"
+        },
+
+        userEmail() {
+            return this.$store.getters.userEmail
+        },
     },
     methods: {
         toggleMore() {
@@ -74,6 +100,43 @@ export default {
         },
         showImagePopup() {
             this.isImagePopupActive = !this.isImagePopupActive
+        },
+        async likeClick() {
+            if (!this.$store.getters.isAuth) {
+                this.$router.push("/user/login")
+            }
+            const userEmail = this.userEmail;
+            const detail = JSON.parse(JSON.stringify(this.detail));
+
+            if(detail.dataLikes.length === 1 && detail.dataLikes[0] === "null") {
+                detail.dataLikes[0] = userEmail
+            } else {
+                const checkLike = detail.dataLikes.find((email) => {
+                    return email === userEmail
+                })
+
+                if(!checkLike) {
+                    detail.dataLikes.push(userEmail)
+                } else {
+                    if (detail.dataLikes.length === 1) {
+                        detail.dataLikes[0] = "null"
+                    } else {
+                        const userEmailIndex = detail.dataLikees.findIndex((email) => {
+                            return email === userEmail
+                        })
+
+                        detail.dataLikes.splice(userEmailIndex, 1)
+                    }
+                }
+            }
+
+            let { id:_, ...portfolio } = detail
+            await this.$store.dispatch("likeUpdate", {
+                portfolioId: this.detail.id,
+                newDataPortfolio: portfolio,
+            })
+
+            await this.$store.dispatch("getPortfolioList")
         },
     },
 };

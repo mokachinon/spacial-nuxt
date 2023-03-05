@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <uiProfileSmall/>
+    <uiProfileSmall />
     <!-- <uiProfileSmall v-if="$store.getters.isAuthenticated" />
     <div class="post" v-else>
       <div class="text">
@@ -16,6 +16,7 @@
         </blockquote>
       </div>
     </div> -->
+    <!-- <uiProfileBig v-if="$store.getters.isAuthenticated"/> -->
     <uiComponentAdd v-if="$store.getters.isAuthenticated" />
     <HomepagePostList />
   </div>
@@ -23,6 +24,7 @@
 
 <script>
 export default {
+  middleware: 'check-auth',
   async created() {
     await this.$store.dispatch("getPortfolioList");
   }
