@@ -29,7 +29,9 @@
                             <div class="button">
                                 <div class="like_button">
                                     <button @click="likeClick"><font-awesome-icon icon="fa-solid fa-heart" /></button>
-                                    <p>{{ likeCount }} people like this</p>
+                                    <span>
+                                        <p>{{ likeCount }} people like this</p>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -79,16 +81,16 @@ export default {
                 return this.detail.dataLikes.length
             }
         },
-        likeImage() {
-            const checkLike = this.detail.dataLikes.find((user) => {
-                return user === this.userEmail
-            });
+        // likeImage() {
+        //     const checkLike = this.detail.dataLikes.find((user) => {
+        //         return user === this.userEmail
+        //     });
 
-            if (checkLike.length === 0) {
-                return "images/heart-black.png"
-            }
-            return "images/heart-red.png"
-        },
+        //     if (checkLike.length === 0) {
+        //         return "images/heart-black.png"
+        //     }
+        //     return "images/heart-red.png"
+        // },
 
         userEmail() {
             return this.$store.getters.userEmail
@@ -102,35 +104,38 @@ export default {
             this.isImagePopupActive = !this.isImagePopupActive
         },
         async likeClick() {
-            if (!this.$store.getters.isAuth) {
-                this.$router.push("/user/login")
+            if (!this.$store.getters.isAuthenticated) {
+                this.$router.push("/user/login");
             }
-            const userEmail = this.userEmail;
-            const detail = JSON.parse(JSON.stringify(this.detail));
 
-            if(detail.dataLikes.length === 1 && detail.dataLikes[0] === "null") {
-                detail.dataLikes[0] = userEmail
+            const userEmail = this.userEmail;
+            const portfolioDetail = JSON.parse(JSON.stringify(this.detail));
+
+            if (portfolioDetail.dataLikes.length === 1 && portfolioDetail.dataLikes[0] === "null") {
+                portfolioDetail.dataLikes[0] = userEmail
             } else {
-                const checkLike = detail.dataLikes.find((email) => {
+                const checkLike = portfolioDetail.dataLikes.find((email) => {
                     return email === userEmail
                 })
 
-                if(!checkLike) {
-                    detail.dataLikes.push(userEmail)
+                if (!checkLike) {
+                    portfolioDetail.dataLikes.push(userEmail)
                 } else {
-                    if (detail.dataLikes.length === 1) {
-                        detail.dataLikes[0] = "null"
+
+                    if (portfolioDetail.dataLikes.length === 1) {
+                        portfolioDetail.dataLikes[0] = "null"
                     } else {
-                        const userEmailIndex = detail.dataLikees.findIndex((email) => {
+                        const userEmailIndex = portfolioDetail.dataLikes.findIndex((email) => {
                             return email === userEmail
                         })
 
-                        detail.dataLikes.splice(userEmailIndex, 1)
+                        portfolioDetail.dataLikes.splice(userEmailIndex, 1)
                     }
                 }
             }
 
-            let { id:_, ...portfolio } = detail
+            let { id: _, ...portfolio } = portfolioDetail
+
             await this.$store.dispatch("likeUpdate", {
                 portfolioId: this.detail.id,
                 newDataPortfolio: portfolio,

@@ -24,15 +24,11 @@ export const getters = {
     }
   },
 
-  isAuth(state) {
-    return state.token != null;
-  },
-
   userEmail(state) {
     if (state.userData) {
       return state.userData.email;
     } else {
-      return null;
+      return "";
     }
   },
 };
