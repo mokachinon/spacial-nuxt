@@ -1,8 +1,9 @@
 <template>
     <div>
-        <div class="container" >
-            <HomepagePostItem v-for="item in postList.slice().reverse()" :key="item" :detail="item" />
+        <div v-if="portfolioData.length" class="container">
+            <HomepagePostItem v-for="item in portfolioData.slice().reverse()" :key="item.id" :detail="item"/>
         </div>
+        <uiWaitingList v-else />
     </div>
 </template>
   
@@ -10,32 +11,15 @@
 
 export default {
     name: 'IndexPage',
-    computed: {
-        postList() {
-            return this.$store.state.portfolioList
+    props: {
+        portfolioData: {
+            type: Array,
+            default: ""
+        },
+        isUser: {
+            type: Boolean,
+            default: false
         }
     }
 }
 </script>
-  
-<style scoped>
-.container {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-}
-
-@media screen and (max-width:990px) {
-    .container {
-        padding: 20px;
-        padding-top: 0px;
-    }
-}
-
-@media screen and (max-width:500px) {
-    .container {
-        padding: 10px;
-    }
-}
-</style>

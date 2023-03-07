@@ -43,12 +43,6 @@
     </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style scoped>
 .text {
     padding: 50px 100px;
@@ -81,6 +75,17 @@ export default {
     border-radius: 5px;
 }
 
+.profile-big .text {
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.profile-big .text h3 {
+    text-align: center;
+    color: #333;
+    font-weight: 400;
+}
+
 
 .header {
     width: 100%;
@@ -99,17 +104,6 @@ export default {
     border-radius: 100%;
     border: 5px solid #fff;
     display: block;
-}
-
-.profile-big .text {
-    padding: 20px;
-    padding-top: 50px;
-}
-
-.profile-big .text h3 {
-    text-align: center;
-    color: #333;
-    font-weight: 400;
 }
 
 

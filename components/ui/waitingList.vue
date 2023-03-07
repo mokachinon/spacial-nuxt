@@ -1,18 +1,19 @@
 <template>
     <div class="post">
         <div class="text">
-            <p><a>Create new post?</a>:</p>
             <blockquote>
-                <nuxt-link tag="a" class="input_area" to="/add">Add new post</nuxt-link>
+                <a>Loading content</a>
             </blockquote>
         </div>
     </div>
 </template>
 
 <style scoped>
+
 .text {
-    padding: 50px 100px;
+  padding: 50px 100px;
 }
+
 
 * {
     -webkit-box-sizing: border-box;
@@ -67,18 +68,14 @@ blockquote {
 .text {
     padding: 50px 100px;
 }
-.container {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  position: relative;
-}
+
 .post {
     width: 100%;
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top:20px;
+
     overflow: hidden;
     z-index: 20;
     position: relative;
@@ -87,6 +84,7 @@ blockquote {
 .post:hover {
     border-left: 1px solid #333;
 }
+
 
 .input_area {
     width: 100%;
@@ -112,4 +110,5 @@ blockquote {
     }
 
 }
+
 </style>

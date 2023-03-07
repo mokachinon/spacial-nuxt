@@ -42,6 +42,11 @@
                   <nuxt-link tag="button" to="/"><font-awesome-icon icon="fa-solid fa-repeat" /></nuxt-link>
                 </div>
               </div>
+              <div class="button" v-if="portfolioData">
+                <div class="delete-button">
+                  <button @click="deletePost"><font-awesome-icon icon="fa-solid fa-trash"/></button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -60,7 +65,9 @@
 export default {
   data() {
     return {
-      portfolio: {
+      portfolio: this.portfolioData
+      ? { ...this.portfolioData }
+      : {
         title: "",
         desc: "",
         image: "",
@@ -68,11 +75,26 @@ export default {
       isImagePopupActive: false,
     };
   },
+  props: {
+    portfolioData: {
+      type: Object,
+      default: null,
+    }
+  },
   methods: {
     async addPortfolio() {
-      this.portfolio.timestamp = new Date().getTime();
-      await this.$store.dispatch("addPortfolio", this.portfolio);
-      this.$router.push("/");
+      if (!this.portfolioData) {
+        await this.$store.dispatch("addPortfolio", this.portfolio);
+        this.$router.push("/")
+      } else {
+        let { id: _, ...newPortfolio } = this.portfolio
+
+        await this.$store.dispatch("updatePortfolio", { newPortfolio, id: this.$route.params.detail })
+        this.$router.push("/");
+      }
+      // this.portfolio.timestamp = new Date().getTime();
+      // await this.$store.dispatch("addPortfolio", this.portfolio);
+      // this.$router.push("/");
     },
     showImagePopup() {
       this.isImagePopupActive = !this.isImagePopupActive
@@ -83,6 +105,10 @@ export default {
       const height = Math.min(textarea.scrollHeight, 200);
       textarea.style.height = height + "px";
     },
+    async deletePost() {
+      await this.$store.dispatch("deletePost", this.$route.params.detail )
+      this.$router.push("/");
+    }
   },
 };
 </script>
@@ -239,14 +265,19 @@ export default {
   background: none;
   border: none;
 }
-
+.delete-button button {
+  background: none;
+  border: none;
+}
 .like_button,
-.reblog_button button {
+.reblog_button, .delete-button button {
   text-decoration: none;
 
 }
-
-.like_button button:hover {
+.delete-button button:hover {
+  cursor: pointer;
+}
+ .like_button button:hover {
   color: #da373c;
   transition: 0.1s;
   -webkit-transition: 0.2s;
@@ -265,6 +296,7 @@ export default {
   cursor: pointer;
   -o-transition: 0.2s;
 }
+
 
 @media screen and (max-width: 990px) {
   .container {

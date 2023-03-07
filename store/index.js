@@ -52,6 +52,12 @@ export const mutations = {
   setUserData(state, payload) {
     state.userData = payload;
   },
+
+  deleteLocalPortfolio(state, portfolioId) {
+    const datas = state.portfolioList.filter((item) => item.id !== portfolioId);
+
+    state.portfolioList = datas;
+  },
 };
 
 export const actions = {
@@ -84,7 +90,7 @@ export const actions = {
 
   async getPortfolioDetail({ commit }, portfolioId) {
     const response = await this.$axios.$get(
-      "https://spacial-445bd-default-rtdb.firebaseio.com/dataPortfolio/" +
+      "https://spacial-445bd-default-rtdb.firebaseio.com/portfolio/" +
         portfolioId +
         ".json"
     );
@@ -116,6 +122,14 @@ export const actions = {
         localStorage.setItem("token", response.idToken);
         Cookie.set("jwt", response.idToken);
 
+        localStorage.setItem(
+          "tokenExpiration",
+          new Date().getTime() + Number.parseInt(response.expiresIn * 1000)
+        );
+        Cookie.set(
+          "expirationDate",
+          new Date().getTime() + Number.parseInt(response.expiresIn * 1000)
+        );
         const userData = {
           username: response.displayName,
           userId: response.localId,
@@ -130,9 +144,10 @@ export const actions = {
       });
   },
 
-  initAuth({ commit }, req) {
+  initAuth({ commit, dispatch }, req) {
     let user;
     let token;
+    let expirationDate;
 
     if (req) {
       if (!req.headers.cookie) {
@@ -153,9 +168,20 @@ export const actions = {
         return;
       }
       token = jwtCookie.split("=")[1];
+      expirationDate = req.headers.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("expirationDate"))
+        .split("=")[1];
     } else {
       token = localStorage.getItem("token");
       user = JSON.parse(localStorage.getItem("user"));
+      expirationDate = localStorage.getItem("tokenExpiration");
+    }
+
+    if (new Date().getTime() > +expirationDate || !token) {
+      console.log("Invalid Token");
+      dispatch("logout");
+      return;
     }
     commit("setToken", token);
     commit("setUserData", user);
@@ -173,11 +199,32 @@ export const actions = {
 
   async likeUpdate({ state }, portfolio) {
     const url =
-      "https://spacial-445bd-default-rtdb.firebaseio.com/dataPortfolio/" +
+      "https://spacial-445bd-default-rtdb.firebaseio.com/portfolio/" +
       portfolio.portfolioId +
       ".json?auth=" +
       state.token;
 
     await this.$axios.$put(url, portfolio.newDataPortfolio);
+  },
+  async updatePortfolio({ dispatch, state }, portfolio) {
+    const url =
+      "https://spacial-445bd-default-rtdb.firebaseio.com/portfolio/" +
+      portfolio.id +
+      ".json?auth=" +
+      state.token;
+
+    await this.$axios.$put(url, portfolio.newPortfolio);
+  },
+
+  async deletePost({ commit, state }, portfolioId) {
+    const url =
+      "https://spacial-445bd-default-rtdb.firebaseio.com/portfolio/" +
+      portfolioId +
+      ".json?auth=" +
+      state.token;
+
+    await this.$axios.$delete(url);
+
+    commit("deleteLocalPortfolio", portfolioId);
   },
 };

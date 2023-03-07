@@ -8,11 +8,11 @@
                 <a>
                     <font-awesome-icon icon="fa-solid fa-ellipsis" />
                 </a>
-                <div class="comment bottom">Edit</div>
+                <nuxt-link tag="div" :to="`/portfolio/${detail.id}/edit`" class="comment bottom">Edit</nuxt-link>
             </div>
             <div class="text">
                 <div>
-                    <p><a class="tumblr_blog">{{ detail.userName }}</a>:</p>
+                    <p><nuxt-link tag="a" to="/user">{{ detail.userName }}</nuxt-link>:</p>
                     <blockquote>
                         <h1><a>{{ detail.title }}</a></h1>
                         <div>
@@ -28,7 +28,8 @@
                         <div class="row">
                             <div class="button">
                                 <div class="like_button">
-                                    <button @click="likeClick"><font-awesome-icon icon="fa-solid fa-heart" /></button>
+                                    <button @click="likeClick"><font-awesome-icon icon="fa-solid fa-heart"
+                                            :class="likeIcon" /></button>
                                     <span>
                                         <p>{{ likeCount }} people like this</p>
                                     </span>
@@ -81,16 +82,16 @@ export default {
                 return this.detail.dataLikes.length
             }
         },
-        // likeImage() {
-        //     const checkLike = this.detail.dataLikes.find((user) => {
-        //         return user === this.userEmail
-        //     });
-
-        //     if (checkLike.length === 0) {
-        //         return "images/heart-black.png"
-        //     }
-        //     return "images/heart-red.png"
-        // },
+        likeIcon() {
+            const checkLike = this.detail.dataLikes.find((user) => {
+                return user === this.userEmail
+            });
+            if (!checkLike) {
+                return ""
+            } else {
+                return "like-active"
+            }
+        },
 
         userEmail() {
             return this.$store.getters.userEmail
@@ -102,6 +103,15 @@ export default {
         },
         showImagePopup() {
             this.isImagePopupActive = !this.isImagePopupActive
+            if (this.isImagePopupActive === true) {
+                // matikan scroll body
+                const body = document.querySelector("body")
+                body.style.overflowY = "hidden";
+            } else {
+                // hidupkan scroll body
+                const body = document.querySelector("body")
+                body.style.overflowY = "auto";
+            }
         },
         async likeClick() {
             if (!this.$store.getters.isAuthenticated) {
@@ -173,7 +183,6 @@ export default {
 
 .image-popup-overlay {
     position: fixed;
-
     top: 0;
     left: 0;
     width: 100%;
@@ -184,12 +193,12 @@ export default {
     max-width: 80%;
     max-height: 80%;
     position: absolute;
-
 }
 
 .image-popup-content img {
     width: 100%;
     height: 100%;
+    /* max-height:80vh; */
     object-fit: contain;
     object-position: center;
 }
@@ -336,7 +345,10 @@ export default {
     -ms-transition: 0.2s;
     -o-transition: 0.2s;
     cursor: pointer;
+}
 
+.like-active {
+    color: #da373c;
 }
 
 @media screen and (max-width: 700px) {
