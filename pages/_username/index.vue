@@ -1,13 +1,12 @@
 <template>
     <div class="container">
-        <uiProfileSmall />
+        <UiAuthorProfile />
         <HomepagePostList :isUser="true" :portfolioData="portfolioData" />
     </div>
 </template>
 
 <script>
 export default {
-    middleware: ["check-auth", "auth"],
     computed: {
         portfolioData() {
             const userId = this.$store.getters.userId;
@@ -19,7 +18,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .container {
     width: 100%;
     max-width: 700px;

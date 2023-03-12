@@ -12,7 +12,7 @@
             </div>
             <div class="text">
                 <div>
-                    <p><nuxt-link tag="a" to="/user">{{ detail.userName }}</nuxt-link>:</p>
+                    <p><nuxt-link tag="a" :to="`/${detail.userName}`">{{ detail.userName }}</nuxt-link>:</p>
                     <blockquote>
                         <h1><a>{{ detail.title }}</a></h1>
                         <div>
@@ -116,6 +116,7 @@ export default {
         async likeClick() {
             if (!this.$store.getters.isAuthenticated) {
                 this.$router.push("/user/login");
+                return;
             }
 
             const userEmail = this.userEmail;

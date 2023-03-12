@@ -3,28 +3,16 @@
         <div class="header"
             style="background:url(https://31.media.tumblr.com/d83b99e22981d5e58e2bd74ed2494087/tumblr_n4ef3ynCZP1st5lhmo1_1280.jpg) no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
         </div>
-        <div class="profile-image" v-if="$store.getters.isAuthenticated">
+        <div class="profile-image">
             <a><img src="https://assets.tumblr.com/images/default_avatar/sphere_open_128.png" /></a>
         </div>
-        <div class="logout-btn edit" v-if="$store.getters.isAuthenticated">
-            <a>
-                <font-awesome-icon icon="fa-solid fa-ellipsis" />
-            </a>
-            <div class="comment bottom" @click="logout">Logout?</div>
-        </div>
-        <div class="text" v-if="$store.getters.isAuthenticated">
-            <nuxt-link tag="h3" to="/user">{{ $store.state.userData.username }}</nuxt-link>
+        <div class="text">
+            <h3>{{ $route.params.username }}</h3>
             <p>UI/UX Designers</p>
             <p>A designer, developer, and
                 photographer.</p>
         </div>
-        <div class="text" v-else>
-            <h3>Hey, do you wanna login?</h3>
-            <blockquote>
-                <nuxt-link tag="p" to="/user/login">Login</nuxt-link>
-            </blockquote>
-        </div>
-        <div class="table" v-if="$store.getters.isAuthenticated">
+        <div class="table">
             <div class="row">
                 <a class="item" href="https://dribbble.com/mkchin">
                     <font-awesome-icon icon="fa-solid fa-d" />
@@ -39,20 +27,6 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    async created() {
-        await this.$store.dispatch("getPortfolioList");
-    },
-    methods: {
-        async logout() {
-            await this.$store.dispatch("logout");
-            this.$router.push("/");
-        }
-    }
-}
-</script>
 
 <style scoped>
 * {
