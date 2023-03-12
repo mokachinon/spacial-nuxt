@@ -4,19 +4,18 @@
             <a @click="showImagePopup">
                 <img :src="detail.image" alt="Nice panorama! Awesome." />
             </a>
-            <div class="item edit">
+            <nuxt-link tag="a" :to="`/portfolio/${detail.id}/edit`" class="edit-content">
                 <a>
-                    <font-awesome-icon icon="fa-solid fa-ellipsis" />
+                    <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                 </a>
-                <nuxt-link tag="div" :to="`/portfolio/${detail.id}/edit`" class="comment bottom">Edit</nuxt-link>
-            </div>
-            <div class="text">
+            </nuxt-link>
+            <div class="post-content">
                 <div>
                     <p><nuxt-link tag="a" :to="`/${detail.userName}`">{{ detail.userName }}</nuxt-link>:</p>
                     <blockquote>
                         <h1><a>{{ detail.title }}</a></h1>
                         <div>
-                            <div class="post-desc" :class="{ visible: isVisible }">
+                            <div class="post-content__desc" :class="{ visible: isVisible }">
                                 <p style="margin:0;"><span>{{ detail.desc }}</span></p>
                             </div>
                             <span v-if="showMore" @click="toggleMore" class="show-more">{{
@@ -24,16 +23,15 @@
                             }}</span>
                         </div>
                     </blockquote>
-                    <div class="social-buttons">
-                        <div class="row">
-                            <div class="button">
-                                <div class="like_button">
-                                    <button @click="likeClick"><font-awesome-icon icon="fa-solid fa-heart"
-                                            :class="likeIcon" /></button>
-                                    <span>
-                                        <p>{{ likeCount }} people like this</p>
-                                    </span>
-                                </div>
+                    <div class="button-container">
+                        <div class="button-container__row">
+                            <div class=container__content>
+                                <button class="like-button" @click="likeClick">
+                                    <font-awesome-icon icon="fa-solid fa-heart" :class="likeIcon" />
+                                </button>
+                            </div>
+                            <div class=container__content>
+                                <p>{{ likeCount }} people like this</p>
                             </div>
                         </div>
                     </div>
@@ -89,7 +87,7 @@ export default {
             if (!checkLike) {
                 return ""
             } else {
-                return "like-active"
+                return "like-btn__clicked"
             }
         },
 
@@ -104,11 +102,9 @@ export default {
         showImagePopup() {
             this.isImagePopupActive = !this.isImagePopupActive
             if (this.isImagePopupActive === true) {
-                // matikan scroll body
                 const body = document.querySelector("body")
                 body.style.overflowY = "hidden";
             } else {
-                // hidupkan scroll body
                 const body = document.querySelector("body")
                 body.style.overflowY = "auto";
             }
@@ -159,6 +155,112 @@ export default {
 </script>
 
 <style scoped>
+.post {
+    width: 100%;
+    background-color: var(--white);
+    border: 1px solid var(--chinese-white);
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+    z-index: 20;
+    position: relative;
+}
+
+.post a img {
+    width: 100%;
+    height: 100%;
+    max-width: 700px;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: top;
+    cursor: pointer;
+}
+
+.post:hover {
+    border-left: 1px solid var(--dark-charcoal);
+}
+
+.edit-content {
+    float: right;
+    display: table-cell;
+    padding: 10px;
+    width: 15%;
+    border-bottom: 5px solid var(--white);
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+.edit-content a {
+    color: var(--chinese-silver);
+}
+
+.edit-content a:hover {
+    color: var(--dark-charcoal);
+}
+
+.post-content {
+    padding: 50px 100px;
+}
+
+.button-container__row {
+    display: table-row;
+}
+
+.button-container {
+    display: table;
+}
+
+.post-content__desc {
+    max-height: 80px;
+    overflow: hidden;
+}
+
+.post-content__desc.visible {
+    max-height: none;
+}
+
+.show-more {
+    color: var(--chinese-silver);
+    cursor: pointer;
+    display: block;
+}
+
+.show-more:hover {
+    text-decoration: underline;
+}
+
+.visible {
+    height: auto;
+}
+
+.container__content {
+    display: table-cell;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.like-button {
+    color: var(--chinese-silver);
+    background: none;
+    border: none;
+}
+
+
+.like-button:hover {
+    color: var(--jasper);
+    transition: 0.1s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    cursor: pointer;
+}
+
+.like-btn__clicked {
+    color: var(--jasper);
+}
+
 .image-popup {
     position: fixed;
     top: 0;
@@ -199,167 +301,18 @@ export default {
 .image-popup-content img {
     width: 100%;
     height: 100%;
-    /* max-height:80vh; */
     object-fit: contain;
     object-position: center;
 }
 
-.post-desc {
-    max-height: 80px;
-    overflow: hidden;
-}
-
-.post-desc.visible {
-    max-height: none;
-}
-
-.show-more {
-    color: #cccc;
-    cursor: pointer;
-    display: block;
-}
-
-.show-more:hover {
-    text-decoration: underline;
-}
-
-
-.post a img {
-    width: 100%;
-    height: 100%;
-    max-width: 700px;
-    max-height: 500px;
-    object-fit: cover;
-    object-position: center;
-    cursor: pointer;
-}
-
-.visible {
-    height: auto;
-}
-
-.text {
-    padding: 50px 100px;
-}
-
-.row {
-    display: table-row;
-}
-
-.edit {
-    display: flex;
-    float: right;
-    justify-content: center;
-    align-items: center;
-}
-
-.edit a {
-    color: #cccccc;
-}
-
-.item {
-    display: table-cell;
-    padding: 10px;
-    width: 15%;
-    border-bottom: 5px solid #fff;
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-}
-
-.item:hover {
-    border-bottom: 5px solid #333;
-}
-
-.item:hover .comment {
-    display: block;
-}
-
-.comment {
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #ffffff;
-    padding: 10px;
-    text-align: center;
-    color: #808080;
-    font-size: 14px;
-    position: absolute;
-    bottom: -45px;
-    left: 50%;
-    margin-left: -50px;
-    border: 1px solid #e0e0e0;
-    display: none;
-    z-index: 10;
-}
-
-.comment:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    margin-left: -5px;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #e0e0e0;
-}
-
-.post {
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    margin-top: 20px;
-    overflow: hidden;
-    z-index: 20;
-    position: relative;
-}
-
-.post:hover {
-    border-left: 1px solid #333;
-}
-
-.social-buttons {
-    display: table;
-}
-
-.button {
-    display: table-cell;
-    padding: 10px;
-    vertical-align: middle;
-}
-
-.like_button button {
-    color: #cccccc;
-    background: none;
-    border: none;
-}
-
-
-.like_button button:hover {
-    color: #da373c;
-    transition: 0.1s;
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    -ms-transition: 0.2s;
-    -o-transition: 0.2s;
-    cursor: pointer;
-}
-
-.like-active {
-    color: #da373c;
-}
-
 @media screen and (max-width: 700px) {
-    .text {
+    .post-content {
         padding: 50px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .text {
+    .post-content {
         padding: 20px;
         padding-top: 50px;
     }

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-    <uiWaitingList v-if="isLoading" />
-    <AdminPostForm v-else :portfolioData="portfolioDetail" />
+        <uiWaitingList v-if="isLoading" />
+        <AdminPostForm v-else :portfolioData="portfolioDetail" />
     </div>
 </template>
 
@@ -44,6 +44,4 @@ export default {
     margin: 0 auto;
     position: relative;
 }
-
-
 </style>

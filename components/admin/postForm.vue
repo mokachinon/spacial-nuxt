@@ -1,54 +1,56 @@
 <template>
   <div class="container">
-    <div class="post panorama">
+    <div class="post">
       <a @click="showImagePopup" v-if="portfolio.image">
         <img :src="portfolio.image" :alt="portfolio.title" />
       </a>
-      <div class="text">
+      <div class="post-content">
         <div>
-          <p><a class="tumblr_blog">Create your post {{ $store.state.userData.username }}</a>:</p>
+          <p><a>Create your post {{ $store.state.userData.username }}</a>:</p>
           <blockquote>
             <div>
               <h3>
                 <span>
-                  <input class="input_area" placeholder="Add img" v-model="portfolio.image" />
+                  <input class="content-input__img" placeholder="Add img" v-model="portfolio.image" />
                 </span>
               </h3>
               <p>
                 <span>
-                  <textarea class="h3" style="font-size: 22px" placeholder="Add header"
-                    v-model="portfolio.title"></textarea>
+                  <textarea class="content-input__header" placeholder="Add header" v-model="portfolio.title"></textarea>
                 </span>
               </p>
               <p>
                 <span>
-                  <textarea class="input_desc" placeholder="write a description" v-model="portfolio.desc"
+                  <textarea class="content-input__desc" placeholder="write a description" v-model="portfolio.desc"
                     @input="autoTextArea"></textarea>
                 </span>
               </p>
             </div>
           </blockquote>
-          <div class="social-buttons">
-            <div class="row">
-              <div class="button">
-                <div class="like_button">
-                  <button @click="addPortfolio">
-                    <font-awesome-icon icon="fa-solid fa-heart" />
-                  </button>
-                </div>
+          <div class="post-buttons">
+            <div class="post-button__row">
+              <div class="button-content">
+                <button class="add-button" @click="addPortfolio">
+                  Post Now
+                </button>
               </div>
-              <div class="button">
-                <div class="reblog_button">
-                  <nuxt-link tag="button" to="/"><font-awesome-icon icon="fa-solid fa-repeat" /></nuxt-link>
-                </div>
+              <div class="button-content">
+                <nuxt-link tag="button" to="/" class="cancel-button">Cancel</nuxt-link>
               </div>
-              <div class="button" v-if="portfolioData">
-                <div class="delete-button">
-                  <button @click="deletePost"><font-awesome-icon icon="fa-solid fa-trash"/></button>
-                </div>
+              <div class="button-content" v-if="portfolioData">
+                <button class="delete-button" @click="deletePost"><font-awesome-icon icon="fa-solid fa-trash" /></button>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div id="confirmation-modal" class="modal">
+      <div class="modal-delete">
+        <h1 class="modal-delete__title">Are you sure you want to delete this post?</h1>
+        <div class="modal-buttons">
+          <button id="confirm-delete" class="modal-buttons__confirm">Yes</button>
+          <button id="cancel-delete" class="modal-buttons__cancel">No</button>
         </div>
       </div>
     </div>
@@ -66,12 +68,12 @@ export default {
   data() {
     return {
       portfolio: this.portfolioData
-      ? { ...this.portfolioData }
-      : {
-        title: "",
-        desc: "",
-        image: "",
-      },
+        ? { ...this.portfolioData }
+        : {
+          title: "",
+          desc: "",
+          image: "",
+        },
       isImagePopupActive: false,
     };
   },
@@ -92,9 +94,6 @@ export default {
         await this.$store.dispatch("updatePortfolio", { newPortfolio, id: this.$route.params.detail })
         this.$router.push("/");
       }
-      // this.portfolio.timestamp = new Date().getTime();
-      // await this.$store.dispatch("addPortfolio", this.portfolio);
-      // this.$router.push("/");
     },
     showImagePopup() {
       this.isImagePopupActive = !this.isImagePopupActive
@@ -106,14 +105,203 @@ export default {
       textarea.style.height = height + "px";
     },
     async deletePost() {
-      await this.$store.dispatch("deletePost", this.$route.params.detail )
-      this.$router.push("/");
+      const modal = document.getElementById("confirmation-modal");
+      const confirmBtn = document.getElementById("confirm-delete");
+      const cancelBtn = document.getElementById("cancel-delete");
+
+      modal.style.display = "block";
+
+      const confirmDelete = await new Promise((resolve) => {
+        confirmBtn.addEventListener("click", () => {
+          resolve(true);
+        });
+        cancelBtn.addEventListener("click", () => {
+          resolve(false);
+        });
+      });
+      modal.style.display = "none";
+
+      if (confirmDelete) {
+        await this.$store.dispatch("deletePost", this.$route.params.detail);
+        this.$router.push("/");
+      }
     }
+
   },
 };
 </script>
 
 <style scoped>
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.post {
+  width: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--chinese-white);
+  border-radius: 5px;
+  margin-top: 20px;
+  overflow: hidden;
+  z-index: 20;
+  position: relative;
+}
+
+.post a img {
+  width: 100%;
+  height: 100%;
+  max-width: 700px;
+  max-height: 500px;
+  object-fit: cover;
+  object-position: top;
+  cursor: pointer;
+
+}
+
+.post:hover {
+  border-left: 1px solid var(--dark-charcoal);
+}
+
+.post-content {
+  padding: 50px 100px;
+}
+
+.content-input__img {
+  width: 100%;
+  height: 50px;
+  resize: none;
+  border: none;
+  color: var(--grey);
+  font-size: var(--forParagraph);
+  font-weight: var(--fwLight);
+}
+
+.content-input__header {
+  width: 100%;
+  height: 50px;
+  resize: none;
+  border: none;
+  color: var(--grey);
+  font-size: var(--forHeader);
+  font-weight: var(--fwLight);
+}
+
+.content-input__desc {
+  width: 100%;
+  height: auto;
+  resize: none;
+  border: none;
+  color: var(--grey);
+  font-size: var(--forParagraph);
+  font-weight: var(--fwLight);
+}
+
+.content-input__desc::-webkit-scrollbar {
+  display: none;
+}
+
+.post-buttons {
+  display: table;
+}
+
+.post-button__row {
+  display: table-row;
+}
+
+button {
+  background: none;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.button-content {
+  display: table-cell;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.add-button {
+  background-color: var(--tufts-blue);
+  border-radius: 5px;
+  color: var(--white);
+
+}
+
+.cancel-button {
+  background-color: var(--chinese-silver);
+  color: var(--white);
+  border-radius: 5px;
+
+}
+
+.delete-button {
+  color: var(--chinese-silver)
+}
+
+.delete-button:hover {
+  color: var(--jasper);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: 0.5s;
+}
+
+.modal-delete {
+  margin: auto;
+  padding: 20px;
+  width: 400px;
+  text-align: center;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.modal-delete__title {
+  color: var(--white);
+  font-weight: var(--fwBold);
+}
+
+.modal-buttons {
+  margin-top: 20px;
+}
+
+.modal-buttons__confirm {
+  background-color: var(--jasper);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-buttons__cancel {
+  background-color: var(--chinese-silver);
+  color: var(--white);
+  border: none;
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-buttons__confirm:focus,
+.modal-buttons__cancel:focus {
+  outline: none;
+}
+
 .image-popup {
   position: fixed;
   top: 0;
@@ -134,7 +322,6 @@ export default {
 .image-popup.active {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s;
 }
 
 .image-popup-overlay {
@@ -159,143 +346,8 @@ export default {
   height: 100%;
   object-fit: contain;
   object-position: center;
-
 }
 
-.text {
-  padding: 50px 100px;
-}
-
-/* homepage */
-.container {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.row {
-  display: table-row;
-}
-
-.post {
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  margin-top: 20px;
-  overflow: hidden;
-  z-index: 20;
-  position: relative;
-}
-
-.post a img {
-  width: 100%;
-  height: 100%;
-  max-width: 700px;
-  max-height: 500px;
-  object-fit: cover;
-  object-position: center;
-  cursor: pointer;
-
-}
-
-.post:hover {
-  border-left: 1px solid #333;
-}
-
-.input_area {
-  width: 100%;
-  height: 50px;
-  resize: none;
-  border: none;
-  color: #808080;
-  font-size: 14px;
-  font-weight: 300;
-}
-
-.h3 {
-  width: 100%;
-  height: 50px;
-  resize: none;
-  border: none;
-  color: #808080;
-  font-size: 14px;
-  font-weight: 300;
-  color: #333;
-  text-decoration: none;
-}
-
-
-.input_desc {
-  width: 100%;
-  height: auto;
-  resize: none;
-  border: none;
-  color: #808080;
-  font-size: 14px;
-  font-weight: 300;
-}
-
-.input_desc::-webkit-scrollbar {
-  display: none;
-}
-
-.social-buttons {
-  display: table;
-}
-
-.row {
-  display: table-row;
-}
-
-.button {
-  display: table-cell;
-  padding: 10px;
-  vertical-align: middle;
-}
-
-.like_button button {
-  color: #cccccc;
-  background: none;
-  border: none;
-}
-
-.reblog_button button {
-  color: #cccccc;
-  background: none;
-  border: none;
-}
-.delete-button button {
-  background: none;
-  border: none;
-}
-.like_button,
-.reblog_button, .delete-button button {
-  text-decoration: none;
-
-}
-.delete-button button:hover {
-  cursor: pointer;
-}
- .like_button button:hover {
-  color: #da373c;
-  transition: 0.1s;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -ms-transition: 0.2s;
-  cursor: pointer;
-  -o-transition: 0.2s;
-}
-
-.reblog_button button:hover {
-  color: #4a89dc;
-  transition: 0.1s;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -ms-transition: 0.2s;
-  cursor: pointer;
-  -o-transition: 0.2s;
-}
 
 
 @media screen and (max-width: 990px) {
@@ -306,13 +358,13 @@ export default {
 }
 
 @media screen and (max-width: 700px) {
-  .text {
+  .post-content {
     padding: 50px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .text {
+  .post-content {
     padding: 20px;
     padding-top: 50px;
   }

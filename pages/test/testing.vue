@@ -14,13 +14,13 @@
           </a>
           <div class="comment bottom" @click="logout">Logout?</div>
         </div>
-        <div class="text" v-if="$store.getters.isAuthenticated">
+        <div class="post-content" v-if="$store.getters.isAuthenticated">
           <nuxt-link tag="h3" to="/user">{{ $store.state.userData.username }}</nuxt-link>
           <p>UI/UX Designers</p>
           <p>A designer, developer, and
             photographer.</p>
         </div>
-        <div class="text" v-else>
+        <div class="post-content" v-else>
           <h3>Hey, do you wanna login?</h3>
           <blockquote>
             <nuxt-link tag="p" to="/user/login">Login</nuxt-link>
@@ -98,21 +98,21 @@ export default {
   width: 300px;
   position: absolute;
   left: -320px;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
+  background-color:var(--white);
+  border: 1px solid var(--chinese-white);
   margin-top: 20px;
   border-radius: 5px;
 }
 
-.profile-big .text {
+.profile-big .post-content {
   padding: 20px;
   padding-top: 50px;
 }
 
-.profile-big .text h3 {
+.profile-big .post-content h3 {
   text-align: center;
-  color: #333;
-  font-weight: 400;
+  color: var(--dark-charcoal);
+  font-weight: var(--fwReguler);
 }
 
 @media screen and (max-width:990px) {
@@ -127,14 +127,14 @@ export default {
 }
 
 @media screen and (max-width:700px) {
-  .text {
+  .post-content {
     padding: 50px;
   }
 
 }
 
 @media screen and (max-width:500px) {
-  .text {
+  .post-content {
     padding: 20px;
     padding-top: 50px;
   }
@@ -159,28 +159,28 @@ body {
   height: 100%;
   width: 100%;
   margin: 0px;
-  background-color: #f2f2f2;
+  background-color: var(--anti--anti-white);
   padding-bottom: 100px;
 }
 
 h1,
 a {
-  color: #333;
-  font-weight: 300;
+  color: var(--dark-charcoal);
+  font-weight: var(--fwLight);
   text-decoration: none;
 }
 
 p {
-  color: #808080;
-  font-size: 14px;
-  font-weight: 300;
+  color: var(--grey);
+  font-size: var(--forParagraph);
+  font-weight: var(--fwLight);
 }
 
 ul,
 li {
-  color: #808080;
-  font-weight: 300;
-  font-size: 14px;
+  color: var(--grey);
+  font-weight: var(--fwLight);
+  font-size: var(--forParagraph);
 }
 
 p a {
@@ -188,24 +188,24 @@ p a {
 }
 
 blockquote {
-  border-left: 3px solid #e0e0e0;
+  border-left: 3px solid var(--chinese-white);
   width: 100%;
   padding-left: 10px;
   margin: 0px;
 }
 
-.text {
+.post-content {
   padding: 50px 100px;
 }
 
-.text blockquote p {
+.post-content blockquote p {
   cursor: pointer;
 }
 
 .profile-small {
-  background-color: #fff;
+  background-color:var(--white);
   position: relative;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--chinese-white);
   border-radius: 0 0 5px 5px;
 }
 
@@ -228,20 +228,20 @@ blockquote {
 }
 
 .edit a {
-  color: #cccccc;
+  color: var(--chinese-silver);
 }
 
 .logout-btn {
   display: table-cell;
   padding: 10px;
   width: 15%;
-  border-bottom: 5px solid #fff;
+  border-bottom: 5px solid var(--white);
   position: relative;
   text-align: center;
 }
 
 .logout-btn:hover {
-  border-bottom: 5px solid #333;
+  border-bottom: 5px solid var(--dark-charcoal);
 }
 
 .logout-btn:hover .comment {
@@ -254,16 +254,16 @@ blockquote {
   width: 100px;
   height: 40px;
   border-radius: 5px;
-  background-color: #ffffff;
+  background-color:var(--white) ;
   padding: 10px;
   text-align: center;
-  color: #808080;
-  font-size: 14px;
+  color: var(--grey);
+  font-size: var(--forParagraph);
   position: absolute;
   bottom: -45px;
   left: 50%;
   margin-left: -50px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--chinese-white);
   display: none;
   z-index: 10;
 }
@@ -284,7 +284,7 @@ blockquote {
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #e0e0e0;
+  border-bottom: 5px solid var(--chinese-white);
 }
 
 
@@ -292,7 +292,7 @@ blockquote {
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  border: 5px solid #fff;
+  border: 5px solid var(--white);
   display: block;
 }
 
@@ -301,9 +301,9 @@ blockquote {
   left: 100px;
 }
 
-.profile-small .text h3 {
-  color: #333;
-  font-weight: 400;
+.profile-small .post-content h3 {
+  color: var(--dark-charcoal);
+  font-weight: var(--fwReguler);
 }
 
 .table {
@@ -320,7 +320,7 @@ blockquote {
   display: table-cell;
   padding: 10px;
   width: 33%;
-  border-bottom: 5px solid #fff;
+  border-bottom: 5px solid var(--white);
   cursor: pointer;
   position: relative;
 }
@@ -334,7 +334,7 @@ blockquote {
 }
 
 .item:hover {
-  border-bottom: 5px solid #333;
+  border-bottom: 5px solid var(--dark-charcoal);
 }
 
 .item:hover .comment {
@@ -345,16 +345,16 @@ blockquote {
   width: 100px;
   height: 40px;
   border-radius: 5px;
-  background-color: #ffffff;
+  background-color:var(--white) ;
   padding: 10px;
   text-align: center;
-  color: #808080;
-  font-size: 14px;
+  color: var(--grey);
+  font-size: var(--forParagraph);
   position: absolute;
   bottom: -45px;
   left: 50%;
   margin-left: -50px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--chinese-white);
   display: none;
   z-index: 10;
 }
@@ -369,7 +369,7 @@ blockquote {
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #e0e0e0;
+  border-bottom: 5px solid var(--chinese-white);
 }
 
 .comment .fa-times {
@@ -382,7 +382,7 @@ blockquote {
 /* profile end */
 
 @media screen and (max-width:700px) {
-  .text {
+  .post-content {
     padding: 50px;
   }
 
@@ -393,7 +393,7 @@ blockquote {
 }
 
 @media screen and (max-width:500px) {
-  .text {
+  .post-content {
     padding: 20px;
     padding-top: 50px;
   }

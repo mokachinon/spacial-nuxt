@@ -1,32 +1,29 @@
 <template>
     <form class="container" @submit.prevent="onSubmit">
-        <div class="post panorama">
+        <div class="login-container">
             <a>
                 <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119917057167421/WhatsApp_Image_2023-02-27_at_18.52.53_1.jpeg"
                     alt="Nice panorama! Awesome." />
             </a>
-            <div class="text">
+            <div class="login-container__form">
                 <div>
-                    <p><a class="tumblr_blog">Please login first</a>:</p>
+                    <p><a>Please login first</a>:</p>
                     <blockquote>
-                        <input class="input_area" type="email" placeholder="Email" v-model="email" />
-                        <div>
-                            <p><span>
-                                    <input class="input_area" placeholder="password..." type="password"
-                                        v-model="password" />
-                                </span></p>
-                        </div>
+                        <input class="input-area" type="email" placeholder="Email" v-model="email" />
+                        <input class="input-area" placeholder="password..." type="password" v-model="password" />
                     </blockquote>
-                    <div class="social-buttons">
-                        <div class="row">
-                            <div class="button">
-                                <button class="like_button" type="submit">
+                    <div class="container-form__btn">
+                        <div class="form-btn__row">
+                            <div class="row-content">
+                                <button class="submit-btn" type="submit">
                                     <font-awesome-icon icon="fa-solid fa-heart" />
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <p>So you are from out of town <nuxt-link class="tumblr_blog" tag="a" to="/user/register">sign up?</nuxt-link></p>
+                    <p>So you are from out of town
+                        <nuxt-link tag="a" to="/user/register">sign up?</nuxt-link>
+                    </p>
                 </div>
             </div>
         </div>
@@ -57,60 +54,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-    -webkit-box-sizing: border-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    box-sizing: border-box;
-    /* Opera/IE 8+ */
-    transition: all 0.5s;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-}
-
-body {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    background-color: #f2f2f2;
-    padding-bottom: 100px;
-}
-
-h1,
-a {
-    color: #333;
-    font-weight: 300;
-    text-decoration: none;
-}
-
-p {
-    color: #808080;
-    font-size: 14px;
-    font-weight: 300;
-}
-
-ul,
-li {
-    color: #808080;
-    font-weight: 300;
-    font-size: 14px;
-}
-
-p a {
-    text-decoration: underline;
-}
-
-blockquote {
-    border-left: 3px solid #e0e0e0;
-    width: 100%;
-    padding-left: 10px;
-    margin: 0px;
-}
-
-.text {
-    padding: 50px 100px;
-}
-
 .container {
     width: 100%;
     max-width: 700px;
@@ -118,30 +61,18 @@ blockquote {
     position: relative;
 }
 
-.row {
-    display: table-row;
-}
-
-.post .item {
-    width: 15%;
-}
-
-/* profile end */
-
-/* homepage */
-.post {
+.login-container {
     width: 100%;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    background-color: var(--white);
+    border: 1px solid var(--chinese-white);
     border-radius: 5px;
     overflow: hidden;
     z-index: 20;
     margin-top: 20px;
-
     position: relative;
 }
 
-.post a img {
+.login-container a img {
     width: 100%;
     height: 100%;
     max-width: 700px;
@@ -150,46 +81,48 @@ blockquote {
     object-position: center;
 }
 
-.post:hover {
-    border-left: 1px solid #333;
+.login-container:hover {
+    border-left: 1px solid var(--dark-charcoal);
 }
 
-.input_area {
+.login-container__form {
+    padding: 50px 100px;
+}
+
+.input-area {
     width: 100%;
     height: 50px;
     resize: none;
     border: none;
-    color: #808080;
-    font-size: 14px;
-    font-weight: 300;
+    color: var(--grey);
+    font-size: var(--forParagraph);
+    font-weight: var(--fwLight);
 }
 
-.social-buttons {
+.container-form__btn {
     display: table;
 }
 
-.button {
+.form-btn__row {
+    display: table-row;
+}
+
+.row-content {
     display: table-cell;
     padding: 10px;
     vertical-align: middle;
 }
 
-.like_button {
-  color: #cccccc;
-  background: none;
-  border: none;
-  text-decoration: none;
+.submit-btn {
+    color: var(--chinese-silver);
+    background: none;
+    border: none;
+    text-decoration: none;
 }
 
-.like_button:hover {
-  color: #da373c;
-  transition: 0.1s;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -ms-transition: 0.2s;
-  -o-transition: 0.2s;
-  cursor: pointer;
-
+.submit-btn:hover {
+    color: var(--jasper);
+    cursor: pointer;
 }
 
 @media screen and (max-width:990px) {
@@ -201,14 +134,13 @@ blockquote {
 }
 
 @media screen and (max-width:700px) {
-    .text {
+    .login-container__form {
         padding: 50px;
     }
-
 }
 
 @media screen and (max-width:500px) {
-    .text {
+    .login-container__form {
         padding: 20px;
         padding-top: 50px;
     }

@@ -10,7 +10,7 @@
         </a>
         <div class=""></div>
       </div>
-      <div class="text">
+      <div class="post-content">
         <div>
           <p><a></a></p>
           <blockquote>
@@ -25,7 +25,7 @@
           <div class="social-buttons">
             <div class="row">
               <div class="button">
-                <div class="like_button">
+                <div class="like-button">
                   <button><font-awesome-icon icon="fa-solid fa-heart"/></button>
                   <span>
                     <p class="demo"></p>
@@ -96,7 +96,7 @@
 }
 
 .show-more {
-  color: #cccc;
+  color: var(--chinese-silver);
   cursor: pointer;
   display: block;
 }
@@ -120,7 +120,7 @@
   height: auto;
 }
 
-.text {
+.post-content {
   padding: 50px 100px;
 }
 
@@ -136,21 +136,21 @@
 }
 
 .edit a {
-  color: #cccccc;
+  color: var(--chinese-silver);
 }
 
 .item {
   display: table-cell;
   padding: 10px;
   width: 15%;
-  border-bottom: 5px solid #fff;
+  border-bottom: 5px solid var(--white);
   cursor: pointer;
   position: relative;
   text-align: center;
 }
 
 .item:hover {
-  border-bottom: 5px solid #333;
+  border-bottom: 5px solid var(--dark-charcoal);
 }
 
 .item:hover .comment {
@@ -161,16 +161,16 @@
   width: 100px;
   height: 40px;
   border-radius: 5px;
-  background-color: #ffffff;
+  background-color:var(--white) ;
   padding: 10px;
   text-align: center;
-  color: #808080;
-  font-size: 14px;
+  color: var(--grey);
+  font-size: var(--forParagraph);
   position: absolute;
   bottom: -45px;
   left: 50%;
   margin-left: -50px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--chinese-white);
   display: none;
   z-index: 10;
 }
@@ -185,13 +185,13 @@
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #e0e0e0;
+  border-bottom: 5px solid var(--chinese-white);
 }
 
 .post {
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
+  background-color:var(--white);
+  border: 1px solid var(--chinese-white);
   border-radius: 5px;
   margin-top: 20px;
   overflow: hidden;
@@ -200,7 +200,7 @@
 }
 
 .post:hover {
-  border-left: 1px solid #333;
+  border-left: 1px solid var(--dark-charcoal);
 }
 
 .social-buttons {
@@ -213,15 +213,15 @@
   vertical-align: middle;
 }
 
-.like_button button {
-  color: #cccccc;
+.like-button button {
+  color: var(--chinese-silver);
   background: none;
   border: none;
 }
 
 
-.like_button button:hover {
-  color: #da373c;
+.like-button button:hover {
+  color: var(--jasper);
   transition: 0.1s;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
@@ -231,17 +231,17 @@
 }
 
 .like-active {
-  color: #da373c;
+  color: var(--jasper);
 }
 
 @media screen and (max-width: 700px) {
-  .text {
+  .post-content {
     padding: 50px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .text {
+  .post-content {
     padding: 20px;
     padding-top: 50px;
   }

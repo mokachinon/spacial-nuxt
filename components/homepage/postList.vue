@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="portfolioData.length" class="container">
-            <HomepagePostItem v-for="item in portfolioData.slice().reverse()" :key="item.id" :detail="item"/>
+        <div v-if="portfolioData.length">
+            <HomepagePostItem v-for="item in portfolioData.slice().reverse()" :key="item.id" :detail="item" />
         </div>
         <uiWaitingList v-else />
     </div>

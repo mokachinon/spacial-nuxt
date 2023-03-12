@@ -8,7 +8,7 @@
                 <div class="profile-image">
                     <img src="https://assets.tumblr.com/images/default_avatar/sphere_open_128.png" />
                 </div>
-                <div class="text">
+                <div class="post-content">
                     <h3>robby</h3>
                     <p>UI/UX Designers</p>
                     <p>A designer, developer, and
@@ -44,7 +44,7 @@
 </template>
 
 <style scoped>
-.text {
+.post-content {
     padding: 50px 100px;
 }
 
@@ -69,21 +69,21 @@
     width: 300px;
     position: absolute;
     left: -320px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    background-color: var(--white);
+    border: 1px solid var(--chinese-white);
     margin-top: 20px;
     border-radius: 5px;
 }
 
-.profile-big .text {
+.profile-big .post-content {
     padding: 20px;
     padding-top: 50px;
 }
 
-.profile-big .text h3 {
+.profile-big .post-content h3 {
     text-align: center;
-    color: #333;
-    font-weight: 400;
+    color: var(--dark-charcoal);
+    font-weight: var(--fwReguler);
 }
 
 
@@ -102,7 +102,7 @@
     width: 100px;
     height: 100px;
     border-radius: 100%;
-    border: 5px solid #fff;
+    border: 5px solid var(--white);
     display: block;
 }
 
@@ -121,13 +121,13 @@
     display: table-cell;
     padding: 10px;
     width: 33%;
-    border-bottom: 5px solid #fff;
+    border-bottom: 5px solid var(--white);
     cursor: pointer;
     position: relative;
 }
 
 .item:hover {
-    border-bottom: 5px solid #333;
+    border-bottom: 5px solid var(--dark-charcoal);
 }
 
 .item:hover .comment {
@@ -139,16 +139,16 @@
     width: 100px;
     height: 40px;
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: var(--white);
     padding: 10px;
     text-align: center;
-    color: #808080;
-    font-size: 14px;
+    color: var(--grey);
+    font-size: var(--forParagraph);
     position: absolute;
     bottom: -45px;
     left: 50%;
     margin-left: -50px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--chinese-white);
     display: none;
     z-index: 10;
 }
@@ -163,7 +163,7 @@
     margin-left: -5px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid #e0e0e0;
+    border-bottom: 5px solid var(--chinese-white);
 }
 
 /* profile end */
@@ -180,14 +180,14 @@
 }
 
 @media screen and (max-width:700px) {
-    .text {
+    .post-content {
         padding: 50px;
     }
 
 }
 
 @media screen and (max-width:500px) {
-    .text {
+    .post-content {
         padding: 20px;
         padding-top: 50px;
     }

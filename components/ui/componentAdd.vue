@@ -1,16 +1,16 @@
 <template>
     <div class="post">
-        <div class="text">
+        <div class="post-content">
             <p><a>Create new post?</a>:</p>
             <blockquote>
-                <nuxt-link tag="a" class="input_area" to="/add">Add new post</nuxt-link>
+                <nuxt-link tag="a" class="input-area" to="/add">Add new post</nuxt-link>
             </blockquote>
         </div>
     </div>
 </template>
 
 <style scoped>
-.text {
+.post-content {
     padding: 50px 100px;
 }
 
@@ -29,28 +29,28 @@ body {
     height: 100%;
     width: 100%;
     margin: 0px;
-    background-color: #f2f2f2;
+    background-color: var(--anti--anti-white);
     padding-bottom: 100px;
 }
 
 h1,
 a {
-    color: #333;
-    font-weight: 300;
+    color: var(--dark-charcoal);
+    font-weight: var(--fwLight);
     text-decoration: none;
 }
 
 p {
-    color: #808080;
-    font-size: 14px;
-    font-weight: 300;
+    color: var(--grey);
+    font-size: var(--forParagraph);
+    font-weight: var(--fwLight);
 }
 
 ul,
 li {
-    color: #808080;
-    font-weight: 300;
-    font-size: 14px;
+    color: var(--grey);
+    font-weight: var(--fwLight);
+    font-size: var(--forParagraph);
 }
 
 p a {
@@ -58,25 +58,27 @@ p a {
 }
 
 blockquote {
-    border-left: 3px solid #e0e0e0;
+    border-left: 3px solid var(--chinese-white);
     width: 100%;
     padding-left: 10px;
     margin: 0px;
 }
 
-.text {
+.post-content {
     padding: 50px 100px;
 }
+
 .container {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
 }
+
 .post {
     width: 100%;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    background-color: var(--white);
+    border: 1px solid var(--chinese-white);
     border-radius: 5px;
     margin-top: 20px;
     overflow: hidden;
@@ -85,28 +87,28 @@ blockquote {
 }
 
 .post:hover {
-    border-left: 1px solid #333;
+    border-left: 1px solid var(--dark-charcoal);
 }
 
-.input_area {
+.input-area {
     width: 100%;
     height: 50px;
     resize: none;
     border: none;
-    color: #808080;
-    font-size: 14px;
-    font-weight: 300;
+    color: var(--grey);
+    font-size: var(--forParagraph);
+    font-weight: var(--fwLight);
 }
 
 @media screen and (max-width:700px) {
-    .text {
+    .post-content {
         padding: 50px;
     }
 
 }
 
 @media screen and (max-width:500px) {
-    .text {
+    .post-content {
         padding: 20px;
         padding-top: 50px;
     }

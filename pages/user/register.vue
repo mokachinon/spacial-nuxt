@@ -1,22 +1,22 @@
 <template>
     <form class="container" @submit.prevent="onSubmit">
-        <div class="post">
+        <div class="sign-container">
             <a>
                 <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119916537061478/shadi-XIOsgtpGMaM-unsplash_1.jpg"
                     alt="Nice panorama! Awesome." />
             </a>
-            <div class="text">
+            <div class="sign-container__form">
                 <div>
                     <p><a>Who are you?</a></p>
                     <blockquote>
-                        <input class="input_area" type="text" placeholder="Username" v-model="username" />
-                        <input class="input_area" type="email" placeholder="Email" v-model="email" />
-                        <input class="input_area" placeholder="password..." type="password" v-model="password" />
+                        <input class="input-area" type="text" placeholder="Username" v-model="username" />
+                        <input class="input-area" type="email" placeholder="Email" v-model="email" />
+                        <input class="input-area" placeholder="password..." type="password" v-model="password" />
                     </blockquote>
-                    <div class="social-buttons">
-                        <div class="row">
-                            <div class="button">
-                                <button class="reblog_button" type="submit">
+                    <div class="container-form__btn">
+                        <div class="form-btn__row">
+                            <div class="row-content">
+                                <button class="submit-btn" type="submit">
                                     Register
                                 </button>
                             </div>
@@ -61,10 +61,10 @@ export default {
     position: relative;
 }
 
-.post {
+.sign-container {
     width: 100%;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    background-color: var(--white);
+    border: 1px solid var(--chinese-white);
     border-radius: 5px;
     overflow: hidden;
     margin-top: 20px;
@@ -73,7 +73,7 @@ export default {
 }
 
 
-.post a img {
+.sign-container a img {
     width: 100%;
     height: 100%;
     max-width: 700px;
@@ -82,54 +82,54 @@ export default {
     object-position: center;
 }
 
-.post:hover {
-    border-left: 1px solid #333;
+.sign-container:hover {
+    border-left: 1px solid var(--dark-charcoal);
 }
 
-.text {
+.sign-container__form {
     padding: 50px 100px;
 }
 
-.input_area {
+.input-area {
     width: 100%;
     height: 50px;
     resize: none;
     border: none;
-    color: #808080;
-    font-size: 14px;
-    font-weight: 300;
+    color: var(--grey);
+    font-size: var(--forParagraph);
+    font-weight: var(--fwLight);
 }
 
-.social-buttons {
+button {
+    background: none;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.container-form__btn {
     display: table;
 }
 
-.row {
+.form-btn__row {
     display: table-row;
 }
 
-.button {
+.row-content {
     display: table-cell;
     padding: 10px;
     vertical-align: middle;
 }
 
-.reblog_button {
-    color: #cccccc;
-    background: white;
+.submit-btn {
+    color: var(--white);
+    background: var(--tufts-blue);
     border: none;
     text-decoration: none;
+    border-radius: 5px;
 }
 
-.reblog_button:hover {
-    color: #4a89dc;
-    transition: 0.1s;
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    -ms-transition: 0.2s;
-    -o-transition: 0.2s;
-    cursor: pointer;
-}
 
 @media screen and (max-width:990px) {
     .container {
@@ -139,22 +139,20 @@ export default {
 }
 
 @media screen and (max-width:700px) {
-    .text {
+    .sign-container__form {
         padding: 50px;
     }
-
 }
 
 @media screen and (max-width:500px) {
-    .text {
-        padding: 20px;
-        padding-top: 50px;
-    }
-
     .container {
         padding: 10px;
     }
+
+    .sign-container__form {
+        padding: 20px;
+        padding-top: 50px;
+    }
 }
 
-/* end of index */
-</style>
+/* end of index */</style>
