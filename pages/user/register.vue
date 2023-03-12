@@ -126,6 +126,7 @@ button {
     color: var(--white);
     background: var(--tufts-blue);
     border: none;
+    cursor: pointer;
     text-decoration: none;
     border-radius: 5px;
 }
@@ -155,4 +156,5 @@ button {
     }
 }
 
-/* end of index */</style>
+/* end of index */
+</style>

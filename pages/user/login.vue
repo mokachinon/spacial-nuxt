@@ -16,7 +16,7 @@
                         <div class="form-btn__row">
                             <div class="row-content">
                                 <button class="submit-btn" type="submit">
-                                    <font-awesome-icon icon="fa-solid fa-heart" />
+                                    Login
                                 </button>
                             </div>
                         </div>
@@ -114,16 +114,14 @@ export default {
 }
 
 .submit-btn {
-    color: var(--chinese-silver);
-    background: none;
+    color: var(--white);
+    background: var(--jasper);
     border: none;
     text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.submit-btn:hover {
-    color: var(--jasper);
-    cursor: pointer;
-}
 
 @media screen and (max-width:990px) {
 
