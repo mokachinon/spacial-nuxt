@@ -130,7 +130,9 @@ button {
     text-decoration: none;
     border-radius: 5px;
 }
-
+.submit-btn:hover {
+    background: var(--dazzled-blue);
+}
 
 @media screen and (max-width:990px) {
     .container {

@@ -228,14 +228,20 @@ button {
   background-color: var(--tufts-blue);
   border-radius: 5px;
   color: var(--white);
+}
 
+.add-button:hover {
+  background: var(--dazzled-blue);
 }
 
 .cancel-button {
   background-color: var(--chinese-silver);
   color: var(--white);
   border-radius: 5px;
+}
 
+.add-button:hover {
+  background: var(--grey);
 }
 
 .delete-button {
@@ -288,6 +294,10 @@ button {
   cursor: pointer;
 }
 
+.modal-buttons__confirm:hover {
+  background: var(--vivid-auburn);
+}
+
 .modal-buttons__cancel {
   background-color: var(--chinese-silver);
   color: var(--white);
@@ -295,6 +305,10 @@ button {
   padding: 10px 40px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.modal-buttons__cancel:hover {
+  background: var(--grey);
 }
 
 .modal-buttons__confirm:focus,
@@ -372,5 +386,4 @@ button {
   .container {
     padding: 10px;
   }
-}
-</style>
+}</style>

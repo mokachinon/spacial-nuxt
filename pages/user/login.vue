@@ -123,13 +123,16 @@ button {
 
 .submit-btn {
     color: var(--white);
-    background: var(--jasper);
+    background: var(--tufts-blue);
     border: none;
     text-decoration: none;
     cursor: pointer;
     border-radius: 5px;
 }
 
+.submit-btn:hover{
+    background: var(--dazzled-blue);
+}
 
 @media screen and (max-width:990px) {
 
