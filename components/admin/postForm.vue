@@ -240,7 +240,7 @@ button {
   border-radius: 5px;
 }
 
-.add-button:hover {
+.cancel-button:hover {
   background: var(--grey);
 }
 
