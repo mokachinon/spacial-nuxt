@@ -99,6 +99,14 @@ export default {
     font-weight: var(--fwLight);
 }
 
+button {
+    background: none;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
 .container-form__btn {
     display: table;
 }
