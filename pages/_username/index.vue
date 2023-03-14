@@ -9,9 +9,8 @@
 export default {
     computed: {
         portfolioData() {
-            const userId = this.$store.getters.userId;
             const portfolioList = this.$store.getters.portfolioData;
-            return portfolioList.filter((portfolioList) => portfolioList.userName == this.$route.params.username);
+            return portfolioList.filtergit((portfolioList) => portfolioList.userName == this.$route.params.username);
         },
     }
 }

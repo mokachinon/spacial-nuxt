@@ -57,7 +57,7 @@ export default {
   
   target: "static",
 
-  router: {
-    base: "/BP-nuxt/",
-  },
+  // router: {
+  //   base: "/BP-nuxt/",
+  // },
 };
