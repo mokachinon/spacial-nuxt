@@ -21,7 +21,7 @@
               </p>
               <p>
                 <span>
-                  <textarea class="content-input__desc" placeholder="write a description" v-model="portfolio.desc"
+                  <textarea class="content-input__desc" placeholder="Write a description" v-model="portfolio.desc"
                     @input="autoTextArea"></textarea>
                 </span>
               </p>
@@ -30,7 +30,7 @@
           <div class="post-buttons">
             <div class="post-button__row">
               <div class="button-content">
-                <button class="add-button" @click="addPortfolio">
+                <button class="add-button" :class="{ 'add-button-disable': !isFormFilled }" @click="addPortfolio">
                   Post Now
                 </button>
               </div>
@@ -83,8 +83,21 @@ export default {
       default: null,
     }
   },
+  computed: {
+    isFormFilled() {
+      if (this.portfolio.title.length > 0 && this.portfolio.desc.length > 0 && this.portfolio.image.length > 0) {
+        return true;
+      } else {
+        return false
+      }
+    }
+  },
   methods: {
     async addPortfolio() {
+      if (this.isFormFilled === false) {
+        return;
+      }
+
       if (!this.portfolioData) {
         await this.$store.dispatch("addPortfolio", this.portfolio);
         this.$router.push("/")
@@ -230,8 +243,17 @@ button {
   color: var(--white);
 }
 
+.add-button-disable {
+  background-color: var(--chinese-silver);
+}
+
 .add-button:hover {
-  background: var(--dazzled-blue);
+  background-color: var(--dazzled-blue);
+}
+
+.add-button-disable:hover {
+  background-color: var(--grey);
+  cursor: not-allowed;
 }
 
 .cancel-button {
@@ -241,7 +263,7 @@ button {
 }
 
 .cancel-button:hover {
-  background: var(--grey);
+  background-color: var(--grey);
 }
 
 .delete-button {
@@ -252,7 +274,6 @@ button {
   color: var(--jasper);
 }
 
-/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -386,4 +407,5 @@ button {
   .container {
     padding: 10px;
   }
-}</style>
+}
+</style>

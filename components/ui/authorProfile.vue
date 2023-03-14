@@ -8,7 +8,7 @@
                 <a><img src="https://assets.tumblr.com/images/default_avatar/sphere_open_128.png" /></a>
             </div>
             <div class="profile-content__text">
-                <h3>{{ $route.params.username }}</h3>
+                <h3 class="title">{{ $route.params.username }}</h3>
                 <p>UI/UX Designers</p>
                 <p>
                     A designer, developer, and
@@ -78,6 +78,13 @@
 
 
 .profile-content__text blockquote p {
+    cursor: pointer;
+}
+
+.profile-content__text .title {
+    text-align: center;
+    color: var(--dark-charcoal);
+    font-weight: var(--fwReguler);
     cursor: pointer;
 }
 

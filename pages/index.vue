@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <uiProfileSmall />
-    <uiComponentAdd v-if="$store.getters.isAuthenticated" />
+    <UiProfileSmall />
+    <UiComponentAdd v-if="$store.getters.isAuthenticated" />
     <HomepagePostList :portfolioData="portfolioList"/>
   </div>
 </template>

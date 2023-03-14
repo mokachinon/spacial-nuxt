@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <uiWaitingList v-if="isLoading" />
+        <UiWaitingList v-if="isLoading" />
         <AdminPostForm v-else :portfolioData="portfolioDetail" />
     </div>
 </template>

@@ -1,24 +1,39 @@
 <template>
     <div class="post">
-        <div class="post-content">
+        <div class="loader"></div>
+        <!-- <div class="post-content">
             <blockquote>
                 <a>Loading content</a>
             </blockquote>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <style scoped>
 .post {
-    width: 100%;
-    background-color: var(--white);
-    border: 1px solid var(--chinese-white);
-    border-radius: 5px;
     margin-top: 20px;
-    overflow: hidden;
-    z-index: 20;
-    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 8px solid;
+    border-color: #ccc;
+    border-right-color: #333333;
+    animation: s2 1s infinite linear;
+}
+
+@keyframes s2 {
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+/*
 
 .post:hover {
     border-left: 1px solid var(--dark-charcoal);
@@ -39,5 +54,4 @@
         padding: 20px;
         padding-top: 50px;
     }
-}
-</style>
+} */</style>

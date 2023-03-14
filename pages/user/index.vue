@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <uiProfileSmall />
+        <UiProfileSmall />
         <HomepagePostList :isUser="true" :portfolioData="portfolioData" />
     </div>
 </template>

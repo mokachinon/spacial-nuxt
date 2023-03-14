@@ -4,7 +4,7 @@
             <a @click="showImagePopup">
                 <img :src="detail.image" alt="Nice panorama! Awesome." />
             </a>
-            <nuxt-link tag="a" :to="`/portfolio/${detail.id}/edit`" class="edit-content">
+            <nuxt-link tag="a" :to="`/portfolio/${detail.id}/edit`" class="edit-content"  v-if="$store.getters.isAuthenticated">
                 <a>
                     <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                 </a>
@@ -53,7 +53,7 @@ export default {
         return {
             isVisible: false,
             isImagePopupActive: false,
-            wordLimit: 50,
+            wordLimit: 400,
         };
     },
     props: {
@@ -64,7 +64,7 @@ export default {
     },
     computed: {
         descWords() {
-            return this.detail.desc.split(" ").length;
+            return this.detail.desc.length;
         },
         showMore() {
             return this.descWords > this.wordLimit;

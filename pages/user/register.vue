@@ -2,7 +2,7 @@
     <form class="container" @submit.prevent="onSubmit">
         <div class="sign-container">
             <a>
-                <img src="https://cdn.discordapp.com/attachments/1001718825328320572/1080119916537061478/shadi-XIOsgtpGMaM-unsplash_1.jpg"
+                <img src="https://i.pinimg.com/736x/39/17/38/3917386afdf481f3d2a7978ea5c07f22.jpg"
                     alt="Nice panorama! Awesome." />
             </a>
             <div class="sign-container__form">

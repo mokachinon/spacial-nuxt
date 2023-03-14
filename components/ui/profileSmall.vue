@@ -119,6 +119,7 @@ export default {
     text-align: center;
     color: var(--dark-charcoal);
     font-weight: var(--fwReguler);
+    cursor: pointer;
 }
 
 .profile-content__text blockquote p {
