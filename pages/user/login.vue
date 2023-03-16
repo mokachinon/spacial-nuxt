@@ -15,7 +15,7 @@
                     <div class="container-form__btn">
                         <div class="form-btn__row">
                             <div class="row-content">
-                                <button class="submit-btn" type="submit">
+                                <button class="submit-btn" type="submit" :class="{ 'submit-btn-disable': !isFormFilled }">
                                     Login
                                 </button>
                             </div>
@@ -38,8 +38,20 @@ export default {
             password: "",
         }
     },
+    computed: {
+        isFormFilled() {
+            if (this.email.length > 0 && this.password.length > 0) {
+                return true;
+            } else {
+                return false
+            }
+        }
+    },
     methods: {
         async onSubmit() {
+            if (this.isFormFilled === false) {
+                return;
+            }
             await this.$store.dispatch("authenticateUser", {
                 isLogin: true,
                 email: this.email,
@@ -125,13 +137,23 @@ button {
     color: var(--white);
     background: var(--tufts-blue);
     border: none;
-    text-decoration: none;
     cursor: pointer;
+    text-decoration: none;
     border-radius: 5px;
 }
 
-.submit-btn:hover{
+.submit-btn-disable {
+    background-color: var(--chinese-silver);
+}
+
+.submit-btn:hover {
     background: var(--dazzled-blue);
+}
+
+
+.submit-btn-disable:hover {
+    background-color: var(--grey);
+    cursor: not-allowed;
 }
 
 @media screen and (max-width:990px) {

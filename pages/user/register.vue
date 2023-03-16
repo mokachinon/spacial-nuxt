@@ -16,7 +16,7 @@
                     <div class="container-form__btn">
                         <div class="form-btn__row">
                             <div class="row-content">
-                                <button class="submit-btn" type="submit">
+                                <button class="submit-btn" type="submit" :class="{ 'submit-btn-disable': !isFormFilled }">
                                     Register
                                 </button>
                             </div>
@@ -38,8 +38,21 @@ export default {
             username: "",
         }
     },
+    computed: {
+        isFormFilled() {
+            if (this.email.length > 0 && this.password.length > 0 && this.username.length > 0) {
+                return true;
+            } else {
+                return false
+            }
+        }
+    },
     methods: {
         onSubmit() {
+            if (this.isFormFilled === false) {
+                return;
+            }
+
             this.$store.dispatch("authenticateUser", {
                 isLogin: false,
                 email: this.email,
@@ -130,8 +143,19 @@ button {
     text-decoration: none;
     border-radius: 5px;
 }
+
+.submit-btn-disable {
+    background-color: var(--chinese-silver);
+}
+
 .submit-btn:hover {
     background: var(--dazzled-blue);
+}
+
+
+.submit-btn-disable:hover {
+    background-color: var(--grey);
+    cursor: not-allowed;
 }
 
 @media screen and (max-width:990px) {
