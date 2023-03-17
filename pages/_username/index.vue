@@ -7,16 +7,19 @@
 
 <script>
 export default {
+    middleware: "check-auth",
     computed: {
         portfolioData() {
+            const userId = this.$store.getters.userId;
             const portfolioList = this.$store.getters.portfolioData;
-            return portfolioList.filtergit((portfolioList) => portfolioList.userName == this.$route.params.username);
+            return portfolioList.filter((portfolioList) => portfolioList.userName == this.$route.params.username);
         },
     }
 }
 </script>
 
-<style>
+
+<style scoped>
 .container {
     width: 100%;
     max-width: 700px;

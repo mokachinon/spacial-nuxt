@@ -206,6 +206,7 @@ export const actions = {
 
     await this.$axios.$put(url, portfolio.newDataPortfolio);
   },
+  
   async updatePortfolio({ dispatch, state }, portfolio) {
     const url =
       "https://spacial-445bd-default-rtdb.firebaseio.com/portfolio/" +
