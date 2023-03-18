@@ -21,13 +21,13 @@
     "@nuxtjs/fontawesome": "^1.1.2",
     "core-js": "^3.25.3",
     "js-cookie": "^3.0.1",
-    "nuxt": "^3.3.1",
+    "nuxt": "^2.15.8",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },
   "devDependencies": {
     "push-dir": "^0.4.1",
-    "webpack": "^5.76.1"
+    "webpack": "^4.46.0"
   }
 }

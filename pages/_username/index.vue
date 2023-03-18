@@ -7,10 +7,11 @@
 
 <script>
 export default {
-    middleware: "check-auth",
+    async created() {
+        await this.$store.dispatch("getPortfolioList");
+    },
     computed: {
         portfolioData() {
-            const userId = this.$store.getters.userId;
             const portfolioList = this.$store.getters.portfolioData;
             return portfolioList.filter((portfolioList) => portfolioList.userName == this.$route.params.username);
         },
