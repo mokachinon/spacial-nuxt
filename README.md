@@ -48,6 +48,25 @@ To deploy the website to a production environment, you can use the following com
 
 This will generate a production-ready version of the website in the **`dist/`** directory. You can then deploy the website using your preferred method, such as uploading it to a web server or deploying it to a cloud service.
 
+## Troubleshooting
+
+If you encounter a problem such as "Nuxt Internal Server Error", you can try the following two methods:
+
+1.  Clear Cookies and Local Storage:
+    -   Open the website page that is experiencing the error in your browser.
+    -   Press F12 on your keyboard to open Developer Tools.
+    -   Select the "Application" tab in Developer Tools.
+    -   Click on the "Clear storage" or "Clear site data" option (depending on the browser you are using).
+    -   Make sure the "Cookies" and "Local Storage" options are selected and click "Clear site data" or "Clear storage".
+    -   Refresh the website page and try again.
+    
+2.  Change the Link:
+    -   Change the link you previously used by adding "/user/login" at the end of the link.
+    -   Example: If the initial link is "[https://spacial-blush.vercel.app/](https://spacial-blush.vercel.app/)", change it to "[https://spacial-blush.vercel.app/user/login](https://spacial-blush.vercel.app/user/login)".
+    -   Log in to the login page and try accessing the website that previously experienced the error again.
+
+Both of the above methods can help you resolve "Nuxt Internal Server Error" issues. If neither of the above methods works, you can try other methods such as clearing the browser cache or contacting the support team of the website you are visiting.
+
 # Thanks for Helping, Juliana Putra!
 I would like to express my gratitude and appreciation to [Juliana Putra](https://github.com/julianaputra) for being an excellent mentor during my bootcamp experience. Although our time together was brief, I learned a lot from him, and his guidance was invaluable.
 
