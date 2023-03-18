@@ -4,7 +4,7 @@
             <a @click="showImagePopup">
                 <img :src="detail.image" alt="Nice panorama! Awesome." />
             </a>
-            <nuxt-link tag="a" :to="`/portfolio/${detail.id}/edit`" class="edit-content" v-if="$store.getters.isAuthenticated && detail.userId">
+            <nuxt-link tag="a" :to="`/portfolio/${detail.id}/edit`" class="edit-content" v-if="$store.getters.isAuthenticated && detail.userId === $store.getters.userId">
                 <a>
                     <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                 </a>
