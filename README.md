@@ -47,3 +47,12 @@ To deploy the website to a production environment, you can use the following com
     npm run build
 
 This will generate a production-ready version of the website in the **`dist/`** directory. You can then deploy the website using your preferred method, such as uploading it to a web server or deploying it to a cloud service.
+
+# Thanks for Helping, Juliana Putra!
+I would like to express my gratitude and appreciation to [Juliana Putra](https://github.com/julianaputra) for being an excellent mentor during my bootcamp experience. Although our time together was brief, I learned a lot from him, and his guidance was invaluable.
+
+Juliana Putra has been incredibly helpful to me. He has always been patient and supportive, taking the time to explain complex concepts in a way that is easy to understand.
+
+Thanks to Juliana Putra, I was able to improve my skills and gain a better understanding of web development. I am grateful for the time and effort he has put into helping me.
+
+Once again, thank you, Juliana Putra, for your contributions to my learning journey. You are a great mentor and an inspiration to me!
